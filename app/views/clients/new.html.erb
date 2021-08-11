@@ -1,0 +1,25 @@
+
+
+<h1>test</h1>
+
+ <% if @clients.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+        <ul>
+          <% @clients.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>  
+    <% end %>
+    
+    <%= form_tag url_for(action: 'create'), method: "post" do %>
+      <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %> >
+      <%= label_tag 'Company_name' %>
+      <%= text_field_tag 'Company_name', @clients.company_name %>
+
+      <%= label_tag 'first_name' %>
+      <%= text_field_tag 'first_name', @clients.first_name %>
+
+      <%= submit_tag "Create Post" %>
+    <% end %>
