@@ -5,7 +5,7 @@ class ClientsController < ApplicationController
   end
 
   def show
-    @client = Client.find(params[:id])
+    @clients = Client.find(params[:id])
   end
 
   def new
@@ -13,10 +13,10 @@ class ClientsController < ApplicationController
   end
 
   def create 
-    @client = Client.create(client_params)
-    if @Client.save
+    @clients = Client.create(clients_params)
+    if @clients.save
       flash[:success] = "Création du nouveau client réussie "
-      redirect_to @client
+      redirect_to @clients
     else
       flash[:error] = "Echec dans la création du nouveau client"
       redirect_to :new      
@@ -24,14 +24,14 @@ class ClientsController < ApplicationController
   end
 
   def edit
-    @client = Client.find(params[:id])
+    @clients = Client.find(params[:id])
   end
 
   def update
-    @client = Client.update(client_params)
-    if @Client.save
+    @clients = Client.find(params[:id])
+    if @clients.update(clients_params)
       flash[:success] = "Mise à jour client réussie "
-      redirect_to @client
+      redirect_to @clients
     else
       flash[:error] = "Echec dans la mise à jours du client"
       render :edit    
@@ -44,7 +44,7 @@ class ClientsController < ApplicationController
 
   private 
 
-    def client_params
+    def clients_params
       params.require(:client).permit(:company_name, :first_name, :last_name, :adress, :phone_number, :mail)
     end
     

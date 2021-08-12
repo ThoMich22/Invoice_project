@@ -1,0 +1,25 @@
+<div class="container"> 
+  <div class="row justify-content-center p-5">
+    <div class="card col-6">
+      <div class="card-header">
+        <h5>Client n°<%= params[:id] %></h5>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li>Entreprise: <%= @clients.company_name %></li>
+          <li>Nom : <%= @clients.first_name %></li>
+          <li>Prénom : <%= @clients.last_name %></li>
+          <li>Adresse : <%= @clients.adress%></li>
+          <li>Numéro de téléphone :<%= @clients.phone_number %></li>
+          <li>Mail : <%= @clients.mail %></li>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <%= link_to "Retour", root_path, class:"btn btn-primary" %>
+        <%= link_to "Modifier", edit_client_path(@clients.id), class:"btn btn-warning" %>
+      </div>
+    </div>
+  </div>
+    
+  </div>
+</div>
