@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row p-5">
+    <div class="card col-12">
+      <div class="card-header">
+        <h5>Liste des produits</h5>      
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+           <tr>
+              <th scope="col">#</th>
+              <th scope="col">Titre</th>
+              <th scope="col">Description</th>
+              <th scope="col">Prix</th>
+            </tr>
+          </thead>
+          <% @product.each do |product| %>
+          <tbody>
+            <tr>
+              <th scope="row"><%= product.id %></th>
+              <td><%= product.title %></td>
+              <td><%= product.description %></td>
+              <td><%= product.price %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+      </div>
+      <div class="card-footer">
+        <%= link_to "Ajouter un nouveau client", new_product_path(@product), class:"btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
