@@ -1,39 +1,38 @@
 <div class="container">
-  <div class="row p-5">
-    <div class="card col-12">
-      <div class="card-header">
-        <h5>Liste des produits</h5>      
-      </div>
-      <div class="card-body">
-        <table class="table">
-          <thead>
-           <tr>
-              <th scope="col">#</th>
-              <th scope="col">Titre</th>
-              <th scope="col">Description</th>
-              <th scope="col">Prix</th>
-            </tr>
-          </thead>
-          <% @product.each do |product| %>
-          <tbody>
-            <tr>
-              <th scope="row"><%= product.id %></th>
-              <td><%= product.title %></td>
-              <td><%= product.description %></td>
-              <td><%= product.price %></td>
-              <td> 
-                <%= link_to "Voir", product_path(product.id), class:"btn btn-warning", method: "get" %>
-                <%= link_to "Modifier", edit_product_path(product.id), class:"btn btn-warning" %>
-                <%= link_to "Supprimer", product_path(product.id), data: {confirm: "Êtes-vous sûr de vouloir supprimer ce client ?"}, class:"btn btn-danger", method: "delete" %>
-              </td>
-            </tr>
-          </tbody>
-          <% end %>
-        </table>
-      </div>
-      <div class="card-footer">
-        <%= link_to "Ajouter un nouveau produit", new_product_path, class:"btn btn-primary" %>
-      </div>
+  <div class="card m-5">
+    <div class="card-header">
+      <h5>Liste des produits</h5>      
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <% @product.each do |product| %>
+        <tbody>
+          <tr>
+            <th scope="row"><%= product.id %></th>
+            <td><%= product.title %></td>
+            <td><%= product.description %></td>
+            <td><%= product.price %></td>
+            <td> 
+              <%= link_to "Voir", product_path(product.id), class:"btn btn-warning", method: "get" %>
+              <%= link_to "Modifier", edit_product_path(product.id), class:"btn btn-warning" %>
+              <%= link_to "Supprimer", product_path(product.id), data: {confirm: "Êtes-vous sûr de vouloir supprimer ce client ?"}, class:"btn btn-danger", method: "delete" %>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Ajouter un nouveau produit", new_product_path, class:"btn btn-primary" %>
     </div>
   </div>
 </div>
