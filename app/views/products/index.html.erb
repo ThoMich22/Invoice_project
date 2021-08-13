@@ -23,7 +23,7 @@
               <td><%= product.price %></td>
               <td> 
                 <%= link_to "Voir", product_path(product.id), class:"btn btn-warning", method: "get" %>
-                <%= link_to "Modifier", product_path(product.id), class:"btn btn-warning" %>
+                <%= link_to "Modifier", edit_product_path(product.id), class:"btn btn-warning" %>
                 <%= link_to "Supprimer", product_path(product.id), data: {confirm: "Êtes-vous sûr de vouloir supprimer ce client ?"}, class:"btn btn-danger", method: "delete" %>
               </td>
             </tr>

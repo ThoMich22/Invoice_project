@@ -5,15 +5,32 @@
         <h5>Modifier Client</h5>
       </div>
       <div class="card-body">
-        <%= simple_form_for @clients do |f| %>
-          <%= f.input :company_name %>
-          <%= f.input :first_name %>
-          <%= f.input :last_name %>
-          <%= f.input :adress %>
-          <%= f.input :phone_number %>
-          <%= f.input :mail %>
-          <%= f.button :submit %>
-        <% end %>
+      <%= simple_form_for(@clients) do |f| %>
+        <form>
+          
+          <div class="form-group row">
+            <%= f.input :company_name, label: 'Nom de la société', class:"form-control" %>
+          </div>
+          <div class="form-group row">
+            <%= f.input :first_name, class:"form-control" %>
+          </div>
+          <div class="form-group row">
+            <%= f.input :last_name, class:"form-control" %>
+          </div>
+          <div class="form-group row">
+            <%= f.input :adress, class:"form-control" %>
+          </div>
+          <div class="form-group row">
+            <%= f.input :phone_number, as: :string, type: "phone", class:"form-control" %>
+          </div>
+          <div class="form-group row">
+            <%= f.input :mail, class:"form-control" %>
+          </div>
+          <div class="form-group text-center my-3">
+            <%= f.button :submit, class:"btn btn-success" %>
+          </div>
+        </form>
+      <% end %>
       </div>
       <div class="card-footer">
         back

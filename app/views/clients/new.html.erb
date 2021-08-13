@@ -1,6 +1,6 @@
 
 
-<div class="container">
+<div class="container-fluid">
   <% if @clients.errors.any? %>
     <div class="alert alert-danger" role="alert">
       <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
@@ -12,20 +12,37 @@
     </div>  
   <% end %>
   <div class="row justify-content-center p-5">
-    <div class="card col-6">
-      <div class="card-header">
+    <div class="card col-4">
+      <div class="card-header bg-light">
         <h5>Ajouter un nouveau client</h5>
       </div>
       <div class="card-body">
-        <%= simple_form_for @clients do |f| %>
-          <%= f.input :company_name %>
-          <%= f.input :first_name %>
-          <%= f.input :last_name %>
-          <%= f.input :adress %>
-          <%= f.input :phone_number %>
-          <%= f.input :mail %>
-          <%= f.button :submit %>
-        <% end %>
+      <%= simple_form_for(@clients) do |f| %>
+        <form>
+          
+          <div class="form-group row">
+            <%= f.input :company_name, label: 'Nom de la société', class:"form-control" %>
+          </div>
+          <div class="form-group row">
+            <%= f.input :first_name, class:"form-control" %>
+          </div>
+          <div class="form-group row">
+            <%= f.input :last_name, class:"form-control" %>
+          </div>
+          <div class="form-group row">
+            <%= f.input :adress, class:"form-control" %>
+          </div>
+          <div class="form-group row">
+            <%= f.input :phone_number, as: :string, type: "phone", class:"form-control" %>
+          </div>
+          <div class="form-group row">
+            <%= f.input :mail, class:"form-control" %>
+          </div>
+          <div class="form-group text-center my-3">
+            <%= f.button :submit, class:"btn btn-success" %>
+          </div>
+        </form>
+      <% end %>
       </div>
       <div class="card-footer">
         back
