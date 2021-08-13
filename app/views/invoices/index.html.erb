@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="card m-5">
+    <div class="card-header">
+      <h5>Liste des produits</h5>      
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Client</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <% @invoice.each do |invoice| %>
+        <tbody>
+          <tr>
+            <th scope="row"><%= invoice.id %></th>
+            <td><%= invoice.date %></td>
+            <td><%= invoice.statue %></td>
+            <td><%= invoice.client_id %></td>
+            <td>00.00</td>
+            <td> 
+              <%= link_to "Voir", invoice_path(invoice.id), class:"btn btn-warning", method: "get" %>
+              <%= link_to "Modifier", edit_invoice_path(invoice.id), class:"btn btn-warning" %>
+              <%= link_to "Supprimer", invoice_path(invoice.id), data: {confirm: "Êtes-vous sûr de vouloir supprimer ce client ?"}, class:"btn btn-danger", method: "delete" %>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Ajouter un nouveau devis", new_invoice_path, class:"btn btn-primary" %>
+    </div>
+  </div>
+</div>

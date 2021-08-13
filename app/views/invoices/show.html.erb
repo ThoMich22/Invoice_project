@@ -1,0 +1,110 @@
+<body class="bg-light">
+  <header class="">
+    <div class="jumbotron jumbotron-fluid py-5">
+      <div class="container">
+        <div class="row d-flex justify-content-end"></div>
+          <div class="col-4">
+            <p class="display-4">Devis n° <strong>20210<%= params[:id] %></strong></h1>
+            <p>Date : <strong><%= @invoice.date %></strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container py-5">
+      <div class="row d-flex justify-content-end">
+        <div class="col-12 d-flex justify-content-start">
+          <div class="col-4">
+            <p class="text-secondary"><strong>From :</strong></p> 
+            <small>
+              <p class="m-0"><strong>Thomas Michonneau</strong></p>
+              <p class="m-0 text-secondary">25 rue neuve de Monplaisir, 69008 - LYON</p>
+              <p class="m-0 text-secondary">0478019465</p>
+              <p class="m-0 text-secondary">www.thomasmichonneau.com</p>
+              <p class="m-0 text-secondary">n° Siret : 05738274569472</p>
+            </small>
+          </div>
+          <div class="col-4">
+            <p class="text-secondary"><strong>To :</strong></p> 
+            <small>
+              <p class="m-0"><strong><%= @invoice.client.last_name %> <%= @invoice.client.first_name %></strong></p>
+              <p class="m-0 text-secondary"><%= @invoice.client.company_name %></p>
+              <p class="m-0 text-secondary"><%= @invoice.client.adress %></p>
+              <p class="m-0 text-secondary"><%= @invoice.client.phone_number %></p>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <main class="container py-5">
+    <div class="row ">
+      <div class="col-12">
+        <table class="table table-borderless ">
+          <thead>
+            <tr>
+              <small>
+              <th scope="col" class="text-secondary">Service</th>
+              <th scope="col" class="text-secondary" style="text-align: end;">Prix</th>
+              </small>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row"><strong> Forfait création de site internet </strong>
+                <small><br>  Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br> 
+                Odit illo voluptatem modi aliquam reiciendis adipisci animi explicabo quod molestiae veniam? <br> 
+                Sunt, corporis quasi. Natus veritatis mollitia accusantium, obcaecati vero veniam.
+                </small>
+              </td>
+              <td style="text-align: end;">750.00 €</td>
+            </tr>
+            
+            <tr>
+              <td scope="row"><strong> Forfait création de site internet </strong>
+                <small><br>  Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br> 
+                Odit illo voluptatem modi aliquam reiciendis adipisci animi explicabo quod molestiae veniam? <br> 
+                Sunt, corporis quasi. Natus veritatis mollitia accusantium, obcaecati vero veniam.
+                </small>
+              </td>
+              <td style="text-align: end;">300.00 €</td>
+            </tr>
+            <tr>
+              <td scope="row"><strong> Forfait création de site internet </strong>
+                <small><br>  Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br> 
+                Odit illo voluptatem modi aliquam reiciendis adipisci animi explicabo quod molestiae veniam? <br> 
+                Sunt, corporis quasi. Natus veritatis mollitia accusantium, obcaecati vero veniam.
+                </small>
+              </td>
+              <td style="text-align: end;">800.00 €</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="d-flex flex-column align-items-end">
+      <div class="col-4">
+        <table class="table" style="text-align: end;">
+          <tbody>
+            <tr>
+              <strong>
+              <th scope="row"><h5 class="fw-bold text-primary">Total :</h5></th>
+              <td><h5 class="fw-bold text-primary">100.00 €</h5></td>
+            </strong>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container py-5">
+      <div class="row">
+        <div class=""> 
+          <small>
+            <p>NOTES</p>
+            <p class="text-secondary">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </small>
+        </div>
+      </div>
+    </div>
+  </footer>
