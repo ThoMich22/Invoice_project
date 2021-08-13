@@ -15,6 +15,7 @@
               <th scope="col">Adresse</th>
               <th scope="col">N° de téléphone</th>
               <th scope="col">Email</th>
+              <th>Action</th>
             </tr>
           </thead>
           <% @clients.each do |client| %>
@@ -27,6 +28,11 @@
               <td><%= client.adress %></td>
               <td><%= client.phone_number %></td>
               <td><%= client.mail %></td>
+              <td> 
+                <%= link_to "Voir", client_path(client.id), class:"btn btn-warning", method: "get" %>
+                <%= link_to "Modifier", edit_client_path(client.id), class:"btn btn-warning" %>
+                <%= link_to "Supprimer", client_path(client.id), data: {confirm: "Êtes-vous sûr de vouloir supprimer ce client ?"}, class:"btn btn-danger", method: "delete" %>
+              </td>
             </tr>
           </tbody>
           <% end %>
@@ -34,7 +40,7 @@
       </div>
       <div class="card-footer">
         <%= link_to "Ajouter un nouveau client", new_client_path(@clients), class:"btn btn-primary" %>
-        <%= link_to "Ajouter un nouveau produit",  new_product_path(@products), class:"btn btn-warning" %>
+        <%= link_to "Ajouter un nouveau produit", new_product_path, class:"btn btn-warning" %>
         
       </div>
     </div>

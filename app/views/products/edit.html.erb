@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row justify-content-center p-5">
+    <div class="card col-6">
+      <div class="card-header">
+        <h5>Modifier produit</h5>
+      </div>
+      <div class="card-body">
+        <%= form_tag url_for(action: 'update'), method: "put" do %>
+          <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %> >
+          <%= label_tag 'Title' %>
+          <%= text_field_tag 'title', @product.title %>
+          <br /> <br />
+
+          <%= label_tag 'Content' %>
+          <%= text_area_tag 'description', @product.description %>
+          <br /> <br />
+
+          <%= label_tag 'Price' %>
+          <%= text_field_tag 'price', @product.price %>
+          <br /> <br />
+
+          <%= submit_tag "Update product" %>
+        <% end %>
+      </div>
+      <div class="card-footer">
+        back
+      </div>
+    </div>
+  </div>
+</div>

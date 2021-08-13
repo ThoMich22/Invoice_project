@@ -39,7 +39,14 @@ class ClientsController < ApplicationController
   end
 
   def destroy
-    Section.find(params[:id]).destroy 
+    @clients = Client.find(params[:id])
+    if @clients.destroy
+      flash[:success] = "Produit supprimé"
+      redirect_to clients_path
+    else
+      flash[:error] = "Echec dans la mise à jours du client"
+      render :edit    
+    end
   end
 
   private 
