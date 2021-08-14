@@ -21,7 +21,7 @@
             <th scope="row"><%= invoice.id %></th>
             <td><%= invoice.date %></td>
             <td><%= invoice.statue %></td>
-            <td><%= invoice.client_id %></td>
+            <td><%= invoice.client.company_name %></td>
             <td>00.00</td>
             <td> 
               <%= link_to "Voir", invoice_path(invoice.id), class:"btn btn-warning", method: "get" %>

@@ -1,13 +1,13 @@
 <%= simple_form_for(@invoice) do |f| %>
   <form>
     <div class="form-group row">
-      <%= f.input :date, as: :date, label: 'Date', class:"form-control" %>
+      <%= f.input :date, as: :date, input_html: {class: 'form-control form-datepicker'} %>
     </div>
     <div class="form-group row">
       <%= f.input :statue, label: 'Statut', class:"form-control" %>
     </div>
     <div class="form-group row">
-      <%= f.input :client_id, as: :string, label: 'Client', class:"form-control" %>
+      <%= f.select :client_id, Client.pluck(:company_name, :id), {}, class: "form-control" %>
     </div>
     
     <div class="form-group text-center my-3">
