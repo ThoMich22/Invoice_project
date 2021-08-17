@@ -20,11 +20,18 @@
           <tr>
             <th scope="row"><%= invoice.id %></th>
             <td><%= invoice.date.strftime('%d/%m/%Y') %></td>
-            <td><p class="<%= @invoice.statu_class %>"><%= invoice.statue %></p></td>
+            <% if invoice.statue == "en cours" %>
+            <td><p class= "badge rounded-pill bg-primary"><%= invoice.statue %></p></td>
+            <% elsif invoice.statue == "envoyée" %>
+            <td><p class= "badge rounded-pill bg-warning"><%= invoice.statue %></p></td>
+            <% else %>
+            <td><p class= "badge rounded-pill bg-success"><%= invoice.statue %></p></td>
+            <% end %>
+            
             <td><%= invoice.client.company_name %></td>
             <td><%= invoice.total_invoice %> € </td>
             <td> 
-              <%= link_to "Voir", invoice_path(invoice.id), class:"btn btn-warning", method: "get" %>
+              <%= link_to "Voir", invoice_path(invoice.id), class:"btn btn-primary", method: "get" %>
               <%= link_to "Modifier", edit_invoice_path(invoice.id), class:"btn btn-warning" %>
               <%= link_to "Supprimer", invoice_path(invoice.id), data: {confirm: "Êtes-vous sûr de vouloir supprimer ce client ?"}, class:"btn btn-danger", method: "delete" %>
             </td>

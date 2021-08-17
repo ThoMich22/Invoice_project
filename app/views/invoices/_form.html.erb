@@ -11,6 +11,10 @@
       <%= f.select :client_id, Client.pluck(:company_name, :id), {},  class: "form-control" %>
     </div>
     
+    <div class="form-group row">
+    <%= render 'selections/test_new' %>
+    
+    </div>
     <div class="form-group text-center my-3">
       <%= f.button :submit, class:"btn btn-success" %>
     </div>

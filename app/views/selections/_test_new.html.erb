@@ -1,0 +1,13 @@
+<%= simple_form_for @selection  do |f| %>
+  <form>
+    <div class="form-group row">
+      <%= f.input :invoice_id, class: 'form-control' %>
+    </div>
+    <div class="form-group row">
+      <%= f.input :product_id, class:"form-control" %>
+    </div>
+    <div class="form-group text-center my-3">
+      <%= f.button :submit, class:"btn btn-success" %>
+    </div>
+  </form>
+<% end %>
