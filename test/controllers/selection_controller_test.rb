@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SelectionsControllerTest < ActionDispatch::IntegrationTest
+class SelectionControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

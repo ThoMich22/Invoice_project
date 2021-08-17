@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="card m-5">
+    <div class="card-header">
+      <h5>Liste des produits</h5>      
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Invoice_id</th>
+            <th scope="col">Client_id</th>
+          </tr>
+        </thead>
+        <% @selections.each do |selection| %>
+        <tbody>
+          <tr>
+            <th scope="row"><%= selection.id %></th>
+            <td><%= selection.invoice_id %></td>
+            <td><%= selection.product_id %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Ajouter un nouveau devis", new_selection_path, class:"btn btn-primary" %>
+    </div>
+  </div>
+</div>

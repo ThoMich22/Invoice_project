@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row justify-content-center p-5">
+    <div class="card col-6">
+      <div class="card-header">
+        <h5>Ajouter un nouveau client</h5>
+      </div>
+      <div class="card-body">
+      <%= simple_form_for(@selection) do |f| %>
+        <form>
+          <div class="form-group row">
+            <%= f.input :invoice_id, class: "form-control" %>
+          </div>
+          <div class="form-group row">
+            <%= f.input :product_id, class: "form-control" %>
+          </div>
+          <%= f.button :submit, class:"btn btn-success" %>
+        </form>
+      <% end %>
+      </div>
+      <div class="card-footer">
+        back
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,7 +5,7 @@
         <div class="row d-flex justify-content-end"></div>
           <div class="col-4">
             <p class="display-4">Devis n° <strong>20210<%= params[:id] %></strong></h1>
-            <p>Date : <strong><%= @invoice.date %></strong></p>
+            <p>Date : <strong><%= @invoice.date.strftime('%d/%m/%Y') %></strong></p>
           </div>
         </div>
       </div>
@@ -49,34 +49,15 @@
             </tr>
           </thead>
           <tbody>
+            <% @selection.each do |selection| %>
             <tr>
-              <td scope="row"><strong> Forfait création de site internet </strong>
-                <small><br>  Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br> 
-                Odit illo voluptatem modi aliquam reiciendis adipisci animi explicabo quod molestiae veniam? <br> 
-                Sunt, corporis quasi. Natus veritatis mollitia accusantium, obcaecati vero veniam.
+              <td scope="row"><strong> <%= selection.product.title %> </strong>
+                <small><br>  <%= selection.product.description %>
                 </small>
               </td>
-              <td style="text-align: end;">750.00 €</td>
+              <td style="text-align: end;"><%= selection.product.price %> €</td>
             </tr>
-            
-            <tr>
-              <td scope="row"><strong> Forfait création de site internet </strong>
-                <small><br>  Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br> 
-                Odit illo voluptatem modi aliquam reiciendis adipisci animi explicabo quod molestiae veniam? <br> 
-                Sunt, corporis quasi. Natus veritatis mollitia accusantium, obcaecati vero veniam.
-                </small>
-              </td>
-              <td style="text-align: end;">300.00 €</td>
-            </tr>
-            <tr>
-              <td scope="row"><strong> Forfait création de site internet </strong>
-                <small><br>  Lorem ipsum, dolor sit amet consectetur adipisicing elit. <br> 
-                Odit illo voluptatem modi aliquam reiciendis adipisci animi explicabo quod molestiae veniam? <br> 
-                Sunt, corporis quasi. Natus veritatis mollitia accusantium, obcaecati vero veniam.
-                </small>
-              </td>
-              <td style="text-align: end;">800.00 €</td>
-            </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -88,7 +69,7 @@
             <tr>
               <strong>
               <th scope="row"><h5 class="fw-bold text-primary">Total :</h5></th>
-              <td><h5 class="fw-bold text-primary">100.00 €</h5></td>
+              <td><h5 class="fw-bold text-primary"><%= @invoice.total_invoice %> €</h5></td>
             </strong>
             </tr>
           </tbody>
