@@ -10,10 +10,12 @@
       <%= f.label "Client", class: 'form-label' %>
       <%= f.select :client_id, Client.pluck(:company_name, :id), {},  class: "form-control" %>
     </div>
-    
     <div class="form-group row">
-    <%= render 'selections/test_new' %>
-    
+      <%= f.simple_fields_for :selections, @products do |s| %>
+        <div class="form-group row">
+          <%= s.input :title %>
+        </div>
+      <% end %>
     </div>
     <div class="form-group text-center my-3">
       <%= f.button :submit, class:"btn btn-success" %>

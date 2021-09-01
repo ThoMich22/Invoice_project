@@ -12,6 +12,8 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = Invoice.new
+    @products = Product.all 
+    @products.each { @invoice.selections.build }
   end
 
   def create 
@@ -57,4 +59,7 @@ class InvoicesController < ApplicationController
       params.require(:invoice).permit(:date, :statue, :client_id)
     end
   
+    def selections_fields
+      params.permit(:invoice).permit(selections_attributes: [:title, :description, :price])
+   end
 end
