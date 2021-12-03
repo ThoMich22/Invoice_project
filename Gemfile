@@ -6,7 +6,7 @@ ruby '2.7.1'
 gem 'faker'
 gem 'table_print'
 gem 'simple_form'
-
+gem 'cocoon'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

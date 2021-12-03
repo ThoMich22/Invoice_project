@@ -11,13 +11,23 @@
       <%= f.select :client_id, Client.pluck(:company_name, :id), {},  class: "form-control" %>
     </div>
 
-    
     <div class="form-group row">
       <%= f.simple_fields_for :selections do |ff| %>
-        <%= ff.input :invoice_id, class: 'form-control' %>
-        <%= ff.input :product_id, class:"form-control" %>
+        <%= ff.hidden_field :invoice_id, :value => @invoice.id, class: 'form-control' %>
+    </div>
+    <div class="form-group row">
+      <%= ff.simple_fields_for :product do |fff| %>
+        <%= fff.input :title, class: 'form-control' %>
+        <%= fff.input :description, class:"form-control" %>
+        <%= fff.input :price, class:"form-control" %>
       <% end %>
     </div>
+      <% end %>
+    
+   
+
+    
+
     <div class="form-group text-center my-3">
       <%= f.button :submit, class:"btn btn-success" %>
       

@@ -12,7 +12,7 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = Invoice.new
-    @products = Product.all 
+    # @products = Product.all 
     # @products.each { @invoice.selections.build }
     @invoice.selections.build.build_product
     
@@ -60,7 +60,7 @@ class InvoicesController < ApplicationController
   private 
 
     def invoice_params
-      params.require(:invoice).permit(:date, :statue, :client_id, selections_attributes: [:invoice_id, :product_id])
+      params.require(:invoice).permit(:date, :statue, :client_id, selections_attributes: [:invoice_id, product_attributes: [:title, :description, :price]])
     end
 
   #   def selections_fields
