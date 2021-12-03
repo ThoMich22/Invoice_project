@@ -1,6 +1,6 @@
 class Invoice < ApplicationRecord
   belongs_to :client
-  has_many :selections
+  has_many :selections, inverse_of: :invoice
   has_many :products, through: :selections
   accepts_nested_attributes_for :selections 
 

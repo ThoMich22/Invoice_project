@@ -13,11 +13,15 @@ class InvoicesController < ApplicationController
   def new
     @invoice = Invoice.new
     @products = Product.all 
-    @products.each { @invoice.selections.build }
+    # @products.each { @invoice.selections.build }
+    @invoice.selections.build.build_product
+    
   end
 
   def create 
+
     @invoice = Invoice.create(invoice_params)
+    
     if @invoice.save
       flash[:success] = "Création du nouveau client réussie "
       redirect_to invoices_path
@@ -56,10 +60,10 @@ class InvoicesController < ApplicationController
   private 
 
     def invoice_params
-      params.require(:invoice).permit(:date, :statue, :client_id)
+      params.require(:invoice).permit(:date, :statue, :client_id, selections_attributes: [:invoice_id, :product_id])
     end
-  
-    def selections_fields
-      params.permit(:invoice).permit(selections_attributes: [:title, :description, :price])
-   end
+
+  #   def selections_fields
+  #     params.permit(:invoice).permit(selections_attributes: [:invoice_id, :product_id])
+  #  end
 end

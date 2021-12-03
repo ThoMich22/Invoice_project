@@ -19,6 +19,8 @@ class SelectionsController < ApplicationController
     end
   end
 
+  
+
   def destroy
   end
 
