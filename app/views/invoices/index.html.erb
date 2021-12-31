@@ -1,47 +1,77 @@
-<div class="container">
-  <div class="card m-5">
-    <div class="card-header">
-      <h5>Liste des produits</h5>      
-    </div>
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Date</th>
-            <th scope="col">Statut</th>
-            <th scope="col">Client</th>
-            <th scope="col">Price</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <% @invoice.each do |invoice| %>
-        <tbody>
-          <tr>
-            <th scope="row"><%= invoice.id %></th>
-            <td><%= invoice.date.strftime('%d/%m/%Y') %></td>
-            <% if invoice.statue == "en cours" %>
-            <td><p class= "badge rounded-pill bg-primary"><%= invoice.statue %></p></td>
-            <% elsif invoice.statue == "envoyée" %>
-            <td><p class= "badge rounded-pill bg-warning"><%= invoice.statue %></p></td>
-            <% else %>
-            <td><p class= "badge rounded-pill bg-success"><%= invoice.statue %></p></td>
-            <% end %>
-            
-            <td><%= invoice.client.company_name %></td>
-            <td><%= invoice.total_invoice %> € </td>
-            <td> 
-              <%= link_to "Voir", invoice_path(invoice.id), class:"btn btn-primary", method: "get" %>
-              <%= link_to "Modifier", edit_invoice_path(invoice.id), class:"btn btn-warning" %>
-              <%= link_to "Supprimer", invoice_path(invoice.id), data: {confirm: "Êtes-vous sûr de vouloir supprimer ce client ?"}, class:"btn btn-danger", method: "delete" %>
-            </td>
-          </tr>
-        </tbody>
-        <% end %>
-      </table>
-    </div>
-    <div class="card-footer">
-      <%= link_to "Ajouter un nouveau devis", new_invoice_path, class:"btn btn-primary" %>
+<body class="">
+  <div class="container vh-100">
+    <div class="row h-100 justify-content-center align-items-center">
+      <div class="col-12">
+        <div class="container-fluid">
+          <div class="row justify-content-between align-items-end">
+            <div class="col-lg-6 col-sm-2 w-auto">
+              <h1 class="display-2 fw-bold">Devis</h1>
+              <p class="fs-5">Bienvenue, vous avez 5 devis en cours</p>
+            </div>
+            <div class="col-lg-auto col-sm-1 w-auto">
+              <div class="navbar">
+                <ul style="padding-left: 0;">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: #c8caec;">
+                      Menu
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #292C6D;">
+                      <li><a class="dropdown-item" href="#" style="color: #c8caec;">Action</a></li>
+                      <li><a class="dropdown-item" href="#" style="color: #c8caec;">Another action</a></li>
+                      <li><a class="dropdown-item" href="#" style="color: #c8caec;">Something else here</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-auto col-sm-1 mb-4 w-auto">
+              <div class="inline-item" id="hover-button">
+                <button type="button" class="btn-icon btn text-white">
+                  <span class=""><i class="fas fa-plus-circle"></i></span>
+                  <span class="">Nouveau devis</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="d-flex justify-content-center">
+              <div class="table-responsive w-100">
+                <table class="table table-hover" > 
+                  <% @invoice.each do |invoice| %>
+                  <tbody>
+                    <tr>
+                        <td>#<%= invoice.id %></td>
+                        <td><%= invoice.date.strftime('%d/%m/%Y') %></td>
+                        <td><%= invoice.client.company_name %></td>
+                        <td><%= invoice.total_invoice %> € </td>
+                        <% if invoice.statue == "en cours" %>
+                        <td><span class="badge1"><%= invoice.statue %></span></td>
+                        <% elsif invoice.statue == "completed" %>
+                        <td><span class="badge2"><%= invoice.statue %></span></td>
+                        <% else %>
+                        <td><span class="badge3"><%= invoice.statue %></span></td>
+                        <% end %>
+                        <td>
+                          <%= link_to invoice_path(invoice.id), method: "get" do %>
+                              <i class="fas fa-arrow-circle-right"></i>
+                          <% end %>
+                        </td>
+                    </tr>
+                  </tbody>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>  
     </div>
   </div>
-</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+
+
+</html>

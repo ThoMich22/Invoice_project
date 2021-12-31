@@ -22,6 +22,14 @@ class SelectionsController < ApplicationController
   
 
   def destroy
+    @selection= Selection.find(params[:id])
+    if @selection.destroy
+      flash[:success] = "Produit supprimé"
+      redirect_to selections_path
+    else
+      flash[:error] = "Echec dans la mise à jours du client"
+      render :edit    
+    end
   end
 
   private 

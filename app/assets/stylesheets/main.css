@@ -1,0 +1,141 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+}
+
+body {
+  background-color: #161853;
+  height: 100%;
+}
+
+p{
+  color: rgb(255, 255, 255);
+}
+
+h1{
+  font-family: 'Poppins', sans-serif;
+  color: #c8caec;
+}
+
+#bgblue{
+  background-color: #292C6D;
+}
+
+
+table { 
+  border-collapse: separate; 
+  border-spacing: 0 30px; 
+  margin-top: -10px; /* correct offset on first border spacing if desired */
+}
+td {
+  border: solid 1px #c5c6e0;
+  border-style: solid none;
+  padding: 40px;
+  background-color: #d0d1db;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #c8caec;
+  
+  vertical-align: baseline;
+  text-align: center;
+  
+}
+td:first-child {
+  border-left-style: solid;
+  border-top-left-radius: 50px; 
+  border-bottom-left-radius: 50px;
+  padding: 40px;
+}
+td:last-child {
+  border-right-style: solid;
+  border-bottom-right-radius: 50px; 
+  border-top-right-radius: 50px; 
+  padding: 40px;
+}
+
+
+ul, li, a, p{
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: #c8caec;
+  list-style-type: none;
+  
+}
+
+a{
+  text-decoration: none;
+  color: #c8caec;
+}
+button{
+  font-family: 'Poppins', sans-serif;
+  
+}
+
+p{
+  font-family: 'Poppins', sans-serif;
+  color: #c8caec;
+}
+
+.fas{
+  font-size: 22px;
+}
+
+.fas:hover{
+  color: #ffffff;
+}
+
+.inline-item{
+  padding: 2px;
+  background-color: #EC255A;
+  font-family: 'Poppins' sans-serif;
+  border-radius: 22px;
+}
+
+.inline-item:hover{
+  padding: 4px;
+  background-color: #c5c6e0;
+  font-family: 'Poppins' sans-serif;
+  border-radius: 22px;
+}
+
+.badge1{
+  background-color: #e6c11a;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.badge2{
+  background-color: #1ae646;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+
+}
+
+.badge3{
+  background-color: #c5c6e0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.center-div {
+  margin: 0 auto;
+  width: 100px;
+}

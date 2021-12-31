@@ -18,6 +18,7 @@
             <th scope="row"><%= selection.id %></th>
             <td><%= selection.invoice_id %></td>
             <td><%= selection.product_id %></td>
+            <td><%= link_to "Supprimer", selection_path(selection.id), data: {confirm: "Êtes-vous sûr de vouloir supprimer ce client ?"}, class:"btn btn-danger", method: "delete" %></td>
           </tr>
         </tbody>
         <% end %>

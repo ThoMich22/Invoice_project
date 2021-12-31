@@ -8,7 +8,7 @@ class Invoice < ApplicationRecord
     @total_invoice = 0
 
     self.selections.each do |selection|
-      @total_invoice = selection.product.price + @total_invoice
+     @total_invoice = selection.product.price + @total_invoice
     end
   
     return @total_invoice

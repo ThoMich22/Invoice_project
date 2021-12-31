@@ -19,7 +19,7 @@
       <%= ff.simple_fields_for :product do |fff| %>
         <%= fff.input :title, class: 'form-control' %>
         <%= fff.input :description, class:"form-control" %>
-        <%= fff.input :price, class:"form-control" %>
+        <%= fff.input :price, :placeholder => '0.00', required: true, class:"form-control" %>
       <% end %>
     </div>
       <% end %>
