@@ -1,0 +1,15 @@
+
+<div class="nested-fields">
+  <div>
+    <%= f.hidden_field :invoice_id, :value => @invoice.id, class: 'form-control' %>
+    
+  </div>
+  <div class="products">
+    <%= f.simple_fields_for :product do |product| %>
+    
+    <%= render "product_fields", f: product %>
+     
+  <% end %>
+  </div>
+ 
+</div>

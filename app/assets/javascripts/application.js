@@ -12,8 +12,15 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require cocoon
 //= require jquery
 //= require jquery_ujs
-//= require invoices.js
+//= require cocoon
+//= require jquery
+//= require turbolinks
 //= require_tree .
+
+
+$("input.date_picker").datepicker({
+  clearBtn: true,
+  format: "dd/mm/yyyy"
+});

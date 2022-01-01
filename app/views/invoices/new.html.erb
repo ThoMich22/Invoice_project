@@ -1,5 +1,5 @@
 <body style="padding-top: 100px; padding-bottom: 100px;">
-<%= simple_form_for @invoice  do |f| %>
+<%= simple_form_for @invoice  do |invoice_form| %>
 <div class="row w-100">
   <div class="d-flex justify-content-between">
   
@@ -15,21 +15,21 @@
         </div>
       </div>
     </div>
+    
     <div class="col-6">
       <div class=px-4" style="border-radius: 20px; background-color: white; padding-left: 100px; padding-right: 100px; padding-top: 50px;">    
         <div class="row pb-5">
           <div class="col-6">
             <h3 class="card-title pt-5">DEVIS</h3>
-            <p class="card-text p-option">Devis n°: 
-            </p>
+            <p class="card-text p-option">Devis n° : <%= Time.now.year %>--</p>
             <div class="justify-content-start">
-              <%= f.input :date, as: :date, input_html: {class: 'form-datepicker'}, label: false %>
+              <%= invoice_form.input :date, :as => :date, label: false%>
             </div>
           </div>
         </div>
         <div class="row align-items-start py-5">
           <div class="col-6">
-            <span><%= f.select :client_id, Client.pluck(:company_name, :id), {}, placeholder:'Ajouter un client' %>
+            <span><%= invoice_form.select :client_id, Client.pluck(:company_name, :id), {}, placeholder:'Ajouter un client', class:"form-select" %>
             </span>
           </div>
           <div class="col-6 text-end">
@@ -49,43 +49,14 @@
               </div>
             </div>
             <hr class="marging-bottome">
-            <%= f.simple_fields_for :selections do |ff| %>
-            <%= ff.hidden_field :invoice_id, :value => @invoice.id, class: 'form-control' %>
-            <%= ff.simple_fields_for :product do |fff| %>
-            <div class="row  pt-2" style="padding-bottom: 0px;" id="row3">
-              <div class="col">
-                <%= fff.input :title, class:'form-control', placeholder:'Ajouter un titre', label: false %>
-                <%= fff.input :description, class:"form-control", placeholder:'Ajouter une diesciption', label: false  %>
-              </div>
-              <div class="col ">
-                <div class="input-group input-group-sm justify-content-end">
-                  <%= fff.input :price, :placeholder => 'Ajouter un prix', required: true, label: false, class:"form-control" %>
-                  <span class="input-group-text ">.00</span>
-                  <span class="input-group-text ">€</span>
-                </div>
+            <div id="Selections">
+            <%= invoice_form.simple_fields_for :selections do |selection_form| %>
+              <%= render "selection_fields", f: selection_form %>
+            <% end %>
+              <div class="links">
+                <%= link_to_add_association '+ ajouter un produit', invoice_form, :selections, wrap_object: Proc.new { |selection| selection.build_product; selection }, class:"p-option" %>
               </div>
             </div>
-            <hr style="color: #b6b6b6;">
-            <template id="test">
-              <div class="row  pt-2" style="padding-bottom: 0px;" id="testbis">
-                <div class="col">
-                  <%= fff.input :title, class:'form-control', placeholder:'Ajouter un titre', label: false %>
-                  <%= fff.input :description, class:"form-control", placeholder:'Ajouter une diesciption', label: false  %>
-                </div>
-                <div class="col ">
-                  <div class="input-group input-group-sm justify-content-end">
-                    <%= fff.input :price, :placeholder => 'Ajouter un prix', required: true, label: false, class:"form-control" %>
-                    <span class="input-group-text ">.00</span>
-                    <span class="input-group-text ">€</span>
-                    <input type="button" class="btn-close mt-3" onclick="deleteRow(this)"/>
-                  </div>
-                </div>
-              </div>
-              <hr style="color: #b6b6b6;">
-            </template>
-            <button type="button" class="btn btn btn-sm" style="color: #EC255A; font-weight: bold;" id="btnaddrow">+ &nbsp; Ajouter un produit</button>
-            <% end %>
-            <% end %>
           </div>
         </div>
         <div class="row pt-5">
@@ -138,8 +109,8 @@
     <div class="col-3">
       <div class="row ">
         <div class="d-flex flex-column w-50">
-          <%= f.input :statue, label: 'Statut du devis', class:"form-control pb-3", placeholder:"Ajouter un statut", label: false %>
-          <%= f.button :submit, class:"btn btn-danger my-3", style:"border-radius: 25px;"%>
+          <%= invoice_form.input :statue, label: 'Statut du devis', class:"form-control pb-3", placeholder:"Ajouter un statut", label: false %>
+          <%= invoice_form.button :submit, class:"btn btn-danger my-3", style:"border-radius: 25px;"%>
           <%= link_to "Annuler", invoices_path, class:'btn btn-outline-light border-2 my-2 px-5 py-3', style:"border-radius: 25px;" %> 
         </div>
       </div>

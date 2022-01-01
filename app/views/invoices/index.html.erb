@@ -26,10 +26,10 @@
             </div>
             <div class="col-lg-auto col-sm-1 mb-4 w-auto">
               <%= link_to new_invoice_path do %>
-              <div class="inline-item" id="hover-button">
+              <div class="inline-item align-items-center" id="hover-button">
                 <button type="button" class="btn-icon btn text-white">
-                  <span class=""><i class="fas fa-plus-circle"></i></span>
-                  <span class="">Nouveau devis</span>
+                  <span class=""><i class="fas fa-plus-circle" style="color: white;"></i></span>
+                  <span class="px-2 mb-4">Nouveau devis</span>
                 </button>
               </div> 
               <% end %>
@@ -42,7 +42,7 @@
                   <% @invoice.each do |invoice| %>
                   <tbody>
                     <tr>
-                        <td>#<%= invoice.id %></td>
+                        <td><%= Time.now.year %><%= invoice.id %></td>
                         <td><%= invoice.date.strftime('%d/%m/%Y') %></td>
                         <td><%= invoice.client.company_name %></td>
                         <td><%= invoice.total_invoice %> € </td>

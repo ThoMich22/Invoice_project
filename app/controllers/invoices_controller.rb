@@ -14,7 +14,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
     # @products = Product.all 
     # @products.each { @invoice.selections.build }
-    @invoice.selections.build.build_product
+    # @invoice.selections.build.build_product
     
   end
 

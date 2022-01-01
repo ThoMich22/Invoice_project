@@ -6,10 +6,10 @@ ruby '2.7.1'
 gem 'faker'
 gem 'table_print'
 gem 'simple_form'
-gem  "cocoon"
+gem 'cocoon'
 gem 'jquery-rails'
 
-
+gem 'turbolinks', '~> 5.2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.6'
 # Use postgresql as the database for Active Record
