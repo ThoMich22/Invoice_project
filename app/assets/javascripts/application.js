@@ -15,4 +15,5 @@
 //= require cocoon
 //= require jquery
 //= require jquery_ujs
+//= require invoices.js
 //= require_tree .

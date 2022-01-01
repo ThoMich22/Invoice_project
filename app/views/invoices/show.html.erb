@@ -18,8 +18,8 @@
         <div class="row pb-5">
           <div class="col-6">
             <h3 class="card-title pt-5">DEVIS</h3>
-            <p class="card-text p-option">Date : <strong>20210<%= params[:id] %></strong>
-              <br>Devis n°: <strong><%= @invoice.date.strftime('%d/%m/%Y') %></strong>
+            <p class="card-text p-option">Devis n°: <strong>20210<%= params[:id] %></strong>
+              <br>Date : <strong><%= @invoice.date.strftime('%d/%m/%Y') %></strong>
             </p>
           </div>
         </div>
@@ -110,7 +110,7 @@
       <div class="d-grid position-fixed">
         <button type="button" class="btn btn-warning my-2 px-5 py-3" style="border-radius: 25px;">Modifier</button>
         <button type="button" class="btn btn-danger my-2 px-5 py-3" style="border-radius: 25px;">Exporter</button>
-        <button type="button" class="btn btn-outline-light border-2 my-2 px-5 py-3" style="border-radius: 25px;">Retour</button>
+        <%= link_to "Retour", invoices_path, class:'btn btn-outline-light border-2 my-2 px-5 py-3', style:"border-radius: 25px;" %> 
       </div>
     </div>
   </div>
