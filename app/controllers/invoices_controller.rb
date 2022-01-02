@@ -8,6 +8,13 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
     @clients = Client.all
     @selection = @invoice.selections
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Devis: #{@invoice.id}", template: "invoices/test_invoice.html.erb", layout: "pdf"  # Excluding ".pdf" extension.
+      end
+    end
   end
 
   def new

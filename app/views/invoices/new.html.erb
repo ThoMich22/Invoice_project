@@ -54,7 +54,7 @@
               <%= render "selection_fields", f: selection_form %>
             <% end %>
               <div class="links">
-                <%= link_to_add_association '+ ajouter un produit', invoice_form, :selections, wrap_object: Proc.new { |selection| selection.build_product; selection }, class:"p-option" %>
+                <%= link_to_add_association '+ ajouter une mission', invoice_form, :selections, wrap_object: Proc.new { |selection| selection.build_product; selection }, class:"p-option" %>
               </div>
             </div>
           </div>

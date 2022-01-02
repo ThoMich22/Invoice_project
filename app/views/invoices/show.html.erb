@@ -1,11 +1,13 @@
 <body style="padding-top: 100px; padding-bottom: 100px;">
 <div class="row w-100">
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-content-center">
     <div class="col-2">
       <div class="row h-100">
         <div class="d-flex justify-content-end align-items-start">
           <nav class="nav flex-column p-4 position-fixed border-2" id="bg-color-2">
-            <a class="nav-link py-4 " href="#"><i class="fas fa-home"></i></a>
+            <%= link_to invoices_path, class:"nav-link py-4 " do %>
+              <i class="fas fa-home"></i>
+            <% end %>
             <a class="nav-link py-4" href="#"><i class="fas fa-user"></i></a>
             <a class="nav-link py-4" href="#"><i class="fas fa-info-circle"></i></a>
             <a class="nav-link py-4" href="#"><i class="fas fa-briefcase"></i></a>
@@ -13,11 +15,13 @@
         </div>
       </div>
     </div> 
+       
     <%= render "invoice_show" %>
+    
     <div class="col-3">
       <div class="d-grid position-fixed">
         <%= link_to "Modifier", edit_invoice_path(@invoice.id), class:"btn btn-warning my-2 px-5 py-3", style:"border-radius: 25px;" %>
-        <button type="button" class="btn btn-danger my-2 px-5 py-3" style="border-radius: 25px;">Exporter</button>
+        <%= link_to "Exporter", invoice_path(@invoice.id, format: :pdf), class:"btn btn-danger my-2 px-5 py-3", style:"border-radius: 25px;" %>
         <%= link_to "Retour", invoices_path, class:'btn btn-outline-light border-2 my-2 px-5 py-3', style:"border-radius: 25px;" %> 
         <%= link_to "Supprimer", invoice_path(@invoice.id), data: {confirm: "Êtes-vous sûr de vouloir supprimer ce devis ?"}, class:"text-danger text-center pt-2", method: "delete" %>
       </div>

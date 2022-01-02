@@ -1,0 +1,103 @@
+<body>
+      
+  
+  <div class="px-5">
+    <h3 class="pt-5" style="font-family: 'Poppins' sans-serif; font-weight: bold; font-size: 24px; line-height: 26px; color: #000000;">DEVIS</h3>
+    <p class="p-option">Date : <strong><%= @invoice.date.strftime('%d/%m/%Y') %></strong>
+      <br>Devis n°: <strong>2021<%= params[:id] %></strong>
+    </p>
+  </div>
+  <div class="p-5">
+  
+    <h3 class="pt-5" style="font-family: 'Poppins' sans-serif; font-weight: bold; font-size: 24px; line-height: 26px; color: #000000;"><%= @invoice.client.company_name %></h3> 
+    <table class="w-100">
+      <tbody>
+        <tr>
+          <td><strong><%= @invoice.client.last_name %> <%= @invoice.client.first_name %></strong></td>
+          <td align="right"><strong> Thomas Michonneau</strong></td>
+        </tr>
+        <tr>
+          <td class="p-option"><%= @invoice.client.adress %></td>
+          <td align="right" class="p-option">59Bis rue Popincourt - 75011, PARIS</td>
+        </tr>
+        <tr>
+          <td class="p-option"><%= @invoice.client.phone_number %></td>
+          <td align="right" class="p-option">SIRET : 894 866 581 0016</td>
+        </tr>
+        
+      </tbody>
+    </table>
+   
+    <div class="row py-5">
+      <div class="col-12 pt-3">
+        <div class="table-responsive">
+          <table class="table text-right">
+            <thead class="bg-default">
+
+              <tr>
+                <th scope="col" class="text-start p-option fw-bold">MISSION</th>
+                <th scope="col" class="text-end p-option fw-bold">MONTANT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @selection.each do |selection| %>
+              <tr>
+                <td class="text-start pt-3">
+                  <h6 style="font-family: 'Poppins' sans-serif; font-weight: bold; font-size: 12px; text-transform: uppercase;"><%= selection.product.title %></h6>
+                  <p class="p-option"><%= selection.product.description %></p>
+                <td class="text-end pt-3">
+                  <h5 style="font-family: 'Poppins' sans-serif; font-weight: bold; font-size: 16px; text-transform: uppercase;"><%= selection.product.price %> €</h5>
+                </td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="px-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="table-responsive">
+          <table class="table text-right">
+            <thead class="bg-default">
+              <tr>
+                <th scope="col" class="text-start p-option fw-bold">SIGNATURE DU CLIENT</th>
+                <th scope="col" class="text-end p-option fw-bold">TOTAL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-start p-option pt-3" >(précédé de la mention "bon pour accord")</td>
+                <td class="ps-4 py-5 text-end fs-1 fw-bold">
+                  <h4>$ 5000.00</h4>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row pt-3">
+      <table>
+        <tbody>
+          <tr>
+            <td class="p-option" style="text-align: center;">contact@thomasmichonneau.com</td>
+            <td class="p-option" style="text-align: center;">|</td>
+            <td class="p-option" style="text-align: center;">06.71.61.47.85</td>
+            <td class="p-option" style="text-align: center;">|</td>
+            <td class="p-option" style="text-align: center;">thomasmichonneau.com</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row py-5">
+      <h6 class="text-center fw-bold">TVA NON APPLICABLE, ART 293 B DU CGI</h6>
+    </div>
+  </div>
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
