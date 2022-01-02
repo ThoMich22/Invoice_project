@@ -1,16 +1,131 @@
-<div class="container">
-  <div class="row justify-content-center p-5">
-    <div class="card col-6">
-      <div class="card-header">
-        <h5>Ajouter un nouveau client</h5>
-      </div>
-      <div class="card-body">
-        <%= render 'invoices/form' %>
-      </div>
-      <div class="card-footer">
-        back
+<body style="padding-top: 100px; padding-bottom: 100px;">
+<%= simple_form_for @invoice  do |invoice_form| %>
+<div class="row w-100">
+  <div class="d-flex justify-content-between">
+  
+    <div class="col-2">
+      <div class="row h-100">
+        <div class="d-flex justify-content-end align-items-start">
+          <nav class="nav flex-column p-4 position-fixed border-2" id="bg-color-2">
+            <a class="nav-link py-4 " href="#"><i class="fas fa-home"></i></a>
+            <a class="nav-link py-4" href="#"><i class="fas fa-user"></i></a>
+            <a class="nav-link py-4" href="#"><i class="fas fa-info-circle"></i></a>
+            <a class="nav-link py-4" href="#"><i class="fas fa-briefcase"></i></a>
+          </nav>
+        </div>
       </div>
     </div>
+    
+    <div class="col-6">
+      <div class=px-4" style="border-radius: 20px; background-color: white; padding-left: 100px; padding-right: 100px; padding-top: 50px;">    
+        <div class="row pb-5">
+          <div class="col-6">
+            <h3 class="card-title pt-5">DEVIS</h3>
+            <p class="card-text p-option">Devis n° : <%= Time.now.year %>--</p>
+            <div class="justify-content-start">
+              <%= invoice_form.input :date, :as => :date, label: false%>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-start py-5">
+          <div class="col-6">
+            <span><%= invoice_form.select :client_id, Client.pluck(:company_name, :id), {}, placeholder:'Ajouter un client', class:"form-select" %>
+            </span>
+          </div>
+          <div class="col-6 text-end">
+            <strong><p class="p-option">Thomas Michonneau</strong> <br> 59Bis rue Popincourt <br>
+              75011 PARIS <br>
+              SIRET : 894 866 581 0016</p>
+          </div>
+        </div>
+        <div class="row pb-5 pt-2">
+          <div class="col-12 pt-3">
+            <div class="row">
+              <div class="col-6">
+                <p class="p-option fw-bold">MISSION</p>
+              </div>
+              <div class="col-6 text-end">
+                <p class="p-option fw-bold">MONTANT</p>
+              </div>
+            </div>
+            <hr class="marging-bottome">
+            <div id="Selections">
+            <%= invoice_form.simple_fields_for :selections do |selection_form| %>
+              <%= render "selection_fields", f: selection_form %>
+            <% end %>
+              <div class="links">
+                <%= link_to_add_association '+ ajouter un produit', invoice_form, :selections, wrap_object: Proc.new { |selection| selection.build_product; selection }, class:"p-option" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <div class="col-6">
+            <p class="p-option fw-bold">SIGNATURE DU CLIENT</p>
+          </div>
+          <div class="col-6 text-end">
+            <p class="p-option fw-bold">MONTANT</p>
+          </div>
+        </div>
+        <hr class="marging-bottome">
+        <div class="row">
+          <div class="col-6">
+            <p class="p-option">(précédé de la mention pour accord)</p>
+          </div>
+          <div class="col-6 text-end my-4">
+            <h4>00.00 €</h4>
+          </div>
+        </div>
+        <hr>
+        <div class="row pt-3">
+          <div class="d-flex justify-content-between pt-4">
+            <div>
+              <p class="fs-6 fw-light p-option">🤝 MERCI !</p>
+            </div>
+            <div class="d-flex justify-content-between fs-6 fw-light">
+              <div>
+                <p class="p-option">contact@thomasmichonneau.com</p>
+              </div>
+              <div class="mx-3">
+                <p class="p-option">|</p>
+              </div>
+              <div>
+                <p class="p-option">06.71.61.47.85</p>
+              </div>
+              <div class="mx-3">
+                <p class="p-option">|</p>
+              </div>
+              <div>
+                <p class="p-option">thomasmichonneau.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row py-5">
+          <h6 class="text-center fw-bold">TVA NON APPLICABLE, ART 293 B DU CGI</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="row ">
+        <div class="d-flex flex-column w-50">
+          <%= invoice_form.input :statue, label: 'Statut du devis', class:"form-control pb-3", placeholder:"Ajouter un statut", label: false %>
+          <%= invoice_form.button :submit, class:"btn btn-danger my-3", style:"border-radius: 25px;"%>
+          <%= link_to "Annuler", invoices_path, class:'btn btn-outline-light border-2 my-2 px-5 py-3', style:"border-radius: 25px;" %> 
+        </div>
+      </div>
+      <!-- <div class="d-grid position-fixed">
+        <button type="button" class="btn btn-warning my-2 px-5 py-3" style="border-radius: 25px;">Modifier</button>
+        <button type="button" class="btn btn-danger my-2 px-5 py-3" style="border-radius: 25px;">Exporter</button>
+        <%= link_to "Retour", invoices_path, class:'btn btn-outline-light border-2 my-2 px-5 py-3', style:"border-radius: 25px;" %> 
+      </div> -->
+    </div>
+    
   </div>
 </div>
 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<% end %>
+</body>

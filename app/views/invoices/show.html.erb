@@ -16,9 +16,10 @@
     <%= render "invoice_show" %>
     <div class="col-3">
       <div class="d-grid position-fixed">
-        <button type="button" class="btn btn-warning my-2 px-5 py-3" style="border-radius: 25px;">Modifier</button>
+        <%= link_to "Modifier", edit_invoice_path(@invoice.id), class:"btn btn-warning my-2 px-5 py-3", style:"border-radius: 25px;" %>
         <button type="button" class="btn btn-danger my-2 px-5 py-3" style="border-radius: 25px;">Exporter</button>
         <%= link_to "Retour", invoices_path, class:'btn btn-outline-light border-2 my-2 px-5 py-3', style:"border-radius: 25px;" %> 
+        <%= link_to "Supprimer", invoice_path(@invoice.id), data: {confirm: "Êtes-vous sûr de vouloir supprimer ce devis ?"}, class:"text-danger text-center pt-2", method: "delete" %>
       </div>
     </div>
   </div>

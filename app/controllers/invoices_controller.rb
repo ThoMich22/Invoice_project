@@ -38,11 +38,11 @@ class InvoicesController < ApplicationController
   def update
     @invoice = Invoice.find(params[:id])
     if @invoice.update(invoice_params)
-      flash[:success] = "Mise à jour client réussie "
+      flash[:success] = "Invoice modifié"
       redirect_to invoices_path
     else
-      flash[:error] = "Echec dans la mise à jours du client"
-      render :edit    
+      flash[:error] = "Echec dans la modification du devis"
+      redirect_to @invoice   
     end
   end
 
@@ -60,10 +60,6 @@ class InvoicesController < ApplicationController
   private 
 
     def invoice_params
-      params.require(:invoice).permit(:date, :statue, :client_id, selections_attributes: [:invoice_id, product_attributes: [:title, :description, :price]])
+      params.require(:invoice).permit(:date, :statue, :client_id, selections_attributes: [:invoice_id, :_destroy, :id, product_attributes: [:title, :description, :price, :id]])
     end
-
-  #   def selections_fields
-  #     params.permit(:invoice).permit(selections_attributes: [:invoice_id, :product_id])
-  #  end
 end
