@@ -5192,7 +5192,7 @@ fieldset:disabled .btn {
   display: block;
   color: #fff;
   text-decoration: none;
-  background-color: #18bc9c;
+  background-color: #EC255A;
   border: 0 solid transparent;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -5206,7 +5206,7 @@ fieldset:disabled .btn {
 .page-link:hover {
   z-index: 2;
   color: #fff;
-  background-color: #0f7864;
+  background-color: #292C6D;
   border-color: transparent;
 }
 

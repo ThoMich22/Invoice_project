@@ -1,7 +1,11 @@
 class InvoicesController < ApplicationController
+  INVOICES_PER_PAGE = 4
+  
   def index
-    @invoice = Invoice.all
-    @invoice = Invoice.order(created_at: :asc)
+    @page = params.fetch(:page, 0).to_i
+    @invoice = Invoice.offset(@page * INVOICES_PER_PAGE).limit(INVOICES_PER_PAGE) 
+    @invoices = Invoice.count
+   
   end
 
   def show
