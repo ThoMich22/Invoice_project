@@ -6,7 +6,7 @@ class Invoice < ApplicationRecord
   accepts_nested_attributes_for :selections, allow_destroy: true
 
   def total_invoice
-    @total_invoice = 0
+    @total_invoice = 0.00
 
     self.selections.each do |selection|
      @total_invoice = selection.product.price + @total_invoice

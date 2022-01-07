@@ -39,7 +39,7 @@
             <div class="d-flex justify-content-center">
               <div class="table-responsive w-100" >
                 <table class="table table-hover" > 
-                  <% @invoice.each do |invoice| %>
+                  <% @invoice.each  do |invoice| %>
                   <tbody>
                     <tr>
                         <td><%= Time.now.year %><%= invoice.id %></td>
