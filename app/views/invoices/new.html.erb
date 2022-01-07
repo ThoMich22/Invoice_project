@@ -21,7 +21,7 @@
         <div class="row pb-5">
           <div class="col-6">
             <h3 class="card-title pt-5">DEVIS</h3>
-            <p class="card-text p-option">Devis n° : <%= Time.now.year %>--</p>
+            <p class="card-text p-option">Devis n° : <%= Time.now.year %><%= Invoice.last.id + 1 %></p>
             <div class="justify-content-start">
               <%= invoice_form.input :date, :as => :date, label: false%>
             </div>
@@ -29,7 +29,7 @@
         </div>
         <div class="row align-items-start py-5">
           <div class="col-6">
-            <span><%= invoice_form.select :client_id, Client.pluck(:company_name, :id), {}, placeholder:'Ajouter un client', class:"form-select" %>
+            <span><%= invoice_form.select :client_id, Client.pluck(:company_name, :id), {prompt:'Ajouter un client'}, class:"form-select" %>
             </span>
           </div>
           <div class="col-6 text-end">
