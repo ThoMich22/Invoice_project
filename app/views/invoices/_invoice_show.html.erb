@@ -46,7 +46,13 @@
     </div>
     <div class="row pt-5">
       <div class="col-6">
+        <% if @invoice.statue == "en cours" %>
         <p class="p-option fw-bold">SIGNATURE DU CLIENT</p>
+        <% elsif @invoice.statue == "completed" %>
+        <p class="p-option fw-bold">INFOS BANQUE</p>
+        <% else %>
+        <p class="p-option fw-bold">SIGNATURE DU CLIENT</p>
+      <% end %>
       </div>
       <div class="col-6 text-end">
         <p class="p-option fw-bold">MONTANT</p>
@@ -55,7 +61,16 @@
     <hr class="marging-bottome">
     <div class="row">
       <div class="col-6">
+      <% if @invoice.statue == "en cours" %>
         <p class="p-option">(précédé de la mention pour accord)</p>
+        <% elsif @invoice.statue == "completed" %>
+        <p class="p-option">
+          Banque: Boursorama Banque
+          <br> BIC: 
+          <br> IBAN: </p>
+        <% else %>
+        <p class="p-option">(précédé de la mention pour accord)</p>
+      <% end %>
       </div>
       <div class="col-6 text-end my-4">
         <h4><%= @invoice.total_invoice %> €</h4>

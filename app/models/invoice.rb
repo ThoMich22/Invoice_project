@@ -2,6 +2,7 @@ class Invoice < ApplicationRecord
   belongs_to :client
   has_many :selections, inverse_of: :invoice
   has_many :products, through: :selections
+  belongs_to :user, optional: true
   
   accepts_nested_attributes_for :selections, allow_destroy: true
 

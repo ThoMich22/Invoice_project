@@ -63,13 +63,28 @@
           <table class="table text-right">
             <thead class="bg-default">
               <tr>
-                <th scope="col" class="text-start p-option fw-bold">SIGNATURE DU CLIENT</th>
+                <% if @invoice.statue == "en cours" %>
+                  <th scope="col" class="text-start p-option fw-bold">SIGNATURE DU CLIENT</th>
+                  <% elsif @invoice.statue == "completed" %>
+                  <th scope="col" class="text-start p-option fw-bold">INFOS BANQUE</th>
+                  <% else %>
+                  <th scope="col" class="text-start p-option fw-bold">SIGNATURE DU CLIENT</th>
+                <% end %>                
                 <th scope="col" class="text-end p-option fw-bold">TOTAL</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="text-start p-option pt-3" >(précédé de la mention "bon pour accord")</td>
+                <% if @invoice.statue == "en cours" %>
+                  <td class="text-start p-option pt-3">(précédé de la mention "bon pour accord")</td>
+                  <% elsif @invoice.statue == "completed" %>
+                  <td class="text-start p-option pt-3"><p class="p-option">
+                    Banque: Boursorama Banque
+                    <br> BIC: 
+                    <br> IBAN: </p></td>
+                  <% else %>
+                  <td class="text-start p-option pt-3">(précédé de la mention "bon pour accord")</td>
+                <% end %>
                 <td class="ps-4 py-5 text-end fs-1 fw-bold">
                   <h4><%= @invoice.total_invoice %> €</h4>
                 </td>
@@ -79,7 +94,7 @@
         </div>
       </div>
     </div>
-    <div class="row pt-3">
+    <div class="row pt-3 align-self-end">
       <table>
         <tbody>
           <tr>

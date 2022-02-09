@@ -16,9 +16,17 @@
                       Menu
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #292C6D;">
-                      <li><a class="dropdown-item" href="#" style="color: #c8caec;">Action</a></li>
-                      <li><a class="dropdown-item" href="#" style="color: #c8caec;">Another action</a></li>
-                      <li><a class="dropdown-item" href="#" style="color: #c8caec;">Something else here</a></li>
+                      <% if user_signed_in? %>
+                        <li><a class="dropdown-item" href="#" style="color: #c8caec;">Clients</a></li>
+                        <li><a class="dropdown-item" href="#" style="color: #c8caec;">Accéder au profil</a></li>
+                        <li><%= link_to "Clients", clients_path, style:"color: #c8caec;", class:"dropdown-item"%></li>
+                        <li><%= link_to "Accéder au profil", edit_user_registration_path(@current_user), style:"color: #c8caec;", class:"dropdown-item"%></li>
+                        <div class="dropdown-divider"></div>
+                        <li> <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class:"dropdown-item" %></li>
+                      <% else %>
+                        <li><%= link_to "Se connecter", new_user_session_path, style:"color: #c8caec;", class:"dropdown-item"%></li>
+                        <li><%= link_to "Créer un compte", new_user_registration_path, style:"color: #c8caec;", class:"dropdown-item"%></li>
+                      <% end %>
                     </ul>
                   </li>
                 </ul>
@@ -43,7 +51,8 @@
                   <tbody>
                     <tr>
                         <td><%= Time.now.year %><%= invoice.id %></td>
-                        <td><%= invoice.date.strftime('%d/%m/%Y') %></td>
+                        <td><%= invoice.user_id %></td>
+                        <%# <td><%= invoice.date.strftime('%d/%m/%Y') %></td> %>
                         <td><%= invoice.client.company_name %></td>
                         <td><%= invoice.total_invoice %> € </td>
                         <% if invoice.statue == "en cours" %>
@@ -62,15 +71,15 @@
                   </tbody>
                   <% end %>
                 </table>
-                <nav aria-label="Page navigation example">
+                <!-- <nav aria-label="Page navigation example">
                   <ul class="pagination justify-content-start">
                     <li class="page-item">
-                      <%= link_to "Last Page", invoices_path(page: @page - 1), class:"page-link" %>
+                      <%# <%= link_to "Last Page", invoices_path(page: @page - 1), class:"page-link" %> %>
                     </li>
-                      <%= link_to "Next page", invoices_path(page: @page + 1), class:"page-link" %>
+                      <%# #<%= link_to "Next page", invoices_path(page: @page + 1), class:"page-link" %> %>
                     </li>
                   </ul>
-                </nav>
+                </nav> -->
               </div>
             </div>
           </div>

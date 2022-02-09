@@ -10,6 +10,7 @@ gem 'cocoon'
 gem 'jquery-rails'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'devise'
 
 gem 'turbolinks', '~> 5.2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

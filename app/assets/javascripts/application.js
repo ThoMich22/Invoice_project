@@ -20,7 +20,3 @@
 //= require_tree .
 
 
-$("input.date_picker").datepicker({
-  clearBtn: true,
-  format: "dd/mm/yyyy"
-});

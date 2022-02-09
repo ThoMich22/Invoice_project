@@ -14,6 +14,7 @@ class ClientsController < ApplicationController
 
   def create 
     @clients = Client.create(clients_params)
+    @clients.user_id = current_user.id
     if @clients.save
       flash[:success] = "Création du nouveau client réussie "
       redirect_to @clients
@@ -52,7 +53,7 @@ class ClientsController < ApplicationController
   private 
 
     def clients_params
-      params.require(:client).permit(:company_name, :first_name, :last_name, :adress, :phone_number, :mail)
+      params.require(:client).permit(:company_name, :first_name, :last_name, :adress, :phone_number, :mail, :user_id)
     end
     
 end

@@ -1,10 +1,13 @@
 class InvoicesController < ApplicationController
-  INVOICES_PER_PAGE = 4
+  # INVOICES_PER_PAGE = 4
   
   def index
-    @invoices = Invoice.count
-    @page = params.fetch(:page, 0).to_i
-    @invoice = Invoice.offset(@page * INVOICES_PER_PAGE).limit(INVOICES_PER_PAGE).order(id: :desc)
+    # @invoices = Invoice.count
+    # @page = params.fetch(:page, 0).to_i
+    # @invoice = Invoice.current_user_id.offset(@page * INVOICES_PER_PAGE).limit(INVOICES_PER_PAGE).order(id: :desc)
+    # @invoice = Invoice.find(params[:current_user])
+    # @invoice = @current_user.invoice
+    @invoice = Invoice.where(:user_id => current_user.id)
   end
 
   def show
@@ -29,9 +32,9 @@ class InvoicesController < ApplicationController
   end
 
   def create 
-
+    @client = Client.where(:user_id => current_user.id)
     @invoice = Invoice.create(invoice_params)
-    
+        
     if @invoice.save
       flash[:success] = "Création du nouveau client réussie "
       redirect_to invoices_path
@@ -70,6 +73,6 @@ class InvoicesController < ApplicationController
   private 
 
     def invoice_params
-      params.require(:invoice).permit(:date, :statue, :client_id, selections_attributes: [:invoice_id, :_destroy, :id, product_attributes: [:title, :description, :price, :id]])
+      params.require(:invoice).permit(:date, :statue, :client_id, :user_id, selections_attributes: [:invoice_id, :_destroy, :id, product_attributes: [:title, :description, :price, :id]])
     end
 end

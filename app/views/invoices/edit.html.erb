@@ -29,7 +29,7 @@
         </div>
         <div class="row align-items-start py-5">
           <div class="col-6">
-            <span><%= invoice_form.select :client_id, Client.pluck(:company_name, :id), {}, placeholder:'Ajouter un client', class:"form-select" %>
+            <span><%= invoice_form.select :client_id, Client.where(:user_id => current_user.id).pluck(:company_name, :id), {prompt:'Ajouter un client'}, class:"form-select" %></span>
             </span>
           </div>
           <div class="col-6 text-end">

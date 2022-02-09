@@ -22,6 +22,7 @@
           <div class="col-6">
             <h3 class="card-title pt-5">DEVIS</h3>
             <p class="card-text p-option">Devis n° : <%= Time.now.year %><%= Invoice.last.id + 1 %></p>
+            <%= invoice_form.hidden_field :user_id, label: "Which user is creating it?",:as => :hidden, :input_html => { :value => current_user.id }  %>
             <div class="justify-content-start">
               <%= invoice_form.input :date, :as => :date, label: false%>
             </div>
@@ -29,9 +30,9 @@
         </div>
         <div class="row align-items-start py-5">
           <div class="col-6">
-            <span><%= invoice_form.select :client_id, Client.pluck(:company_name, :id), {prompt:'Ajouter un client'}, class:"form-select" %>
-            </span>
+            <span><%= invoice_form.select :client_id, Client.where(:user_id => current_user.id).pluck(:company_name, :id), {prompt:'Ajouter un client'}, class:"form-select" %></span>
           </div>
+
           <div class="col-6 text-end">
             <strong><p class="p-option">Thomas Michonneau</strong> <br> 59Bis rue Popincourt <br>
               75011 PARIS <br>
