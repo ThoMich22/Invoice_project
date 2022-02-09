@@ -17,8 +17,6 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #292C6D;">
                       <% if user_signed_in? %>
-                        <li><a class="dropdown-item" href="#" style="color: #c8caec;">Clients</a></li>
-                        <li><a class="dropdown-item" href="#" style="color: #c8caec;">Accéder au profil</a></li>
                         <li><%= link_to "Clients", clients_path, style:"color: #c8caec;", class:"dropdown-item"%></li>
                         <li><%= link_to "Accéder au profil", edit_user_registration_path(@current_user), style:"color: #c8caec;", class:"dropdown-item"%></li>
                         <div class="dropdown-divider"></div>
