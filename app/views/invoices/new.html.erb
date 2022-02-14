@@ -21,7 +21,7 @@
         <div class="row pb-5">
           <div class="col-6">
             <h3 class="card-title pt-5">DEVIS</h3>
-            <p class="card-text p-option">Devis n° : <%= Time.now.year %><%= Invoice.last.id + 1 %></p>
+            <p class="card-text p-option">Devis n° : <%= Time.now.year %><%= Invoice.count+1 %></p>
             <%= invoice_form.hidden_field :user_id, label: "Which user is creating it?",:as => :hidden, :input_html => { :value => current_user.id }  %>
             <div class="justify-content-start">
               <%= invoice_form.input :date, :as => :date, label: false%>

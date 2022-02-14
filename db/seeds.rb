@@ -14,6 +14,6 @@ Product.destroy_all
 Invoice.destroy_all
 Selection.destroy_all
 
-10.times do
-  Client.create(company_name: Faker::Company.name, first_name: Faker::Superhero.name, last_name: Faker::Superhero.suffix, adress: Faker::Address.full_address, phone_number: Faker::PhoneNumber.extension, mail: Faker::Movie.quote)
-end
+# 10.times do
+#   Client.create(company_name: Faker::Company.name, first_name: Faker::Superhero.name, last_name: Faker::Superhero.suffix, adress: Faker::Address.full_address, phone_number: Faker::PhoneNumber.extension, mail: Faker::Movie.quote)
+# end

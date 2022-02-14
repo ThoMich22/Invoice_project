@@ -17,6 +17,7 @@ class Invoice < ApplicationRecord
   
   end
 
+  
 
 
   # before_save :find_or_create_products

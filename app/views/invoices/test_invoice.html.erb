@@ -46,7 +46,7 @@
                   <h6 style="font-family: 'Poppins' sans-serif; font-weight: bold; font-size: 12px; text-transform: uppercase;"><%= selection.product.title %></h6>
                   <p class="p-option"><%= selection.product.description %></p>
                 <td class="text-end pt-3">
-                  <h5 style="font-family: 'Poppins' sans-serif; font-weight: bold; font-size: 16px; text-transform: uppercase;"><%= selection.product.price %> €</h5>
+                  <h5 style="font-family: 'Poppins' sans-serif; font-weight: bold; font-size: 16px; text-transform: uppercase;"><%= selection.product.price %>0 €</h5>
                 </td>
               </tr>
               <% end %>
@@ -86,7 +86,7 @@
                   <td class="text-start p-option pt-3">(précédé de la mention "bon pour accord")</td>
                 <% end %>
                 <td class="ps-4 py-5 text-end fs-1 fw-bold">
-                  <h4><%= @invoice.total_invoice %> €</h4>
+                  <h4><%= @invoice.total_invoice %>0 €</h4>
                 </td>
               </tr>
             </tbody>
