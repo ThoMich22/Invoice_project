@@ -34,12 +34,13 @@ class InvoicesController < ApplicationController
   def create 
     @client = Client.where(:user_id => current_user.id)
     @invoice = Invoice.create(invoice_params)
+    @invoice.user_id = current_user.id
         
     if @invoice.save
-      flash[:success] = "Création du nouveau client réussie "
+      flash[:success] = "Création du devis réussie "
       redirect_to invoices_path
     else
-      flash[:error] = "Echec dans la création du nouveau client"
+      flash[:error] = "Echec dans la création du devis"
       redirect_to @invoice     
     end
   end

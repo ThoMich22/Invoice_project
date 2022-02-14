@@ -2265,10 +2265,14 @@ progress {
   padding: 0.375rem 0;
   margin-bottom: 0;
   line-height: 1.5;
-  color: #212529;
   background-color: transparent;
   border: solid transparent;
   border-width: 1px 0;
+  font-family: 'Poppins' sans-serif;
+  font-weight: bold;
+  font-size: 36px;
+  text-transform: uppercase;
+  color: #161853;
 }
 
 .form-control-plaintext.form-control-sm, .form-control-plaintext.form-control-lg {

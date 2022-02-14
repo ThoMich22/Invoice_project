@@ -6,12 +6,24 @@
   </div>
   <div class="col ">
     <div class="input-group input-group-sm justify-content-end">
-      <%= f.input :price, :placeholder => 'Ajouter un prix', required: true, label: false, class:"form-control" %>
-      <span class="input-group-text ">.00</span>
-      <span class="input-group-text ">€</span>
-      
-
+      <%= f.input :price, :placeholder => 'Ajouter un prix', required: true, label: false, class:"form-control"%>
+      <span class="input-group-text">.00</span>
+      <span class="input-group-text">€</span>
     </div>
   </div>
 </div>
 <hr style="color: #b6b6b6;">
+
+<script>
+$('.form-control.numeric').keyup(function() {
+  var result = 0;
+  $('#total').attr('value', function() {
+      $('.form-control.numeric').each(function() {
+          if ($(this).val() !== '') {
+              result += parseInt($(this).val());
+          }
+      });
+      $('#total').val(result.toFixed(2) + '€');
+  });
+});
+</script>
