@@ -50,9 +50,8 @@
                     <tr>
                         <td><%= Time.now.year %><%= invoice.invoice_number %></td>
                         <td><%= invoice.date.strftime("%d/%m/%Y") %></td>
-                        <%# <td><%= invoice.date.strftime('%d/%m/%Y') %></td> %>
                         <td><%= invoice.client.company_name %></td>
-                        <td><%= invoice.total_invoice %> € </td>
+                        <td><%= invoice.total_invoice %>0 € </td>
                         <% if invoice.statue == "en cours" %>
                         <td><span class="badge1"><%= invoice.statue %></span></td>
                         <% elsif invoice.statue == "completed" %>

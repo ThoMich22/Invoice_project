@@ -18,12 +18,12 @@
 $('.form-control.numeric').keyup(function() {
   var result = 0;
   $('#total').attr('value', function() {
-      $('.form-control.numeric').each(function() {
-          if ($(this).val() !== '') {
-              result += parseInt($(this).val());
-          }
-      });
-      $('#total').val(result.toFixed(2) + '€');
+    $('.form-control.numeric').each(function() {
+        if ($(this).val() !== '') {
+            result += parseInt($(this).val());
+        }
+    });
+    $('#total').val(result.toFixed(2) + '€');
   });
 });
 </script>

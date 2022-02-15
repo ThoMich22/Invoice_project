@@ -17,7 +17,7 @@ class ClientsController < ApplicationController
     @clients.user_id = current_user.id
     if @clients.save
       flash[:success] = "Création du nouveau client réussie "
-      redirect_to @clients
+      redirect_to clients_path
     else
       flash[:error] = "Echec dans la création du nouveau client"
       redirect_to :new      
@@ -32,7 +32,7 @@ class ClientsController < ApplicationController
     @clients = Client.find(params[:id])
     if @clients.update(clients_params)
       flash[:success] = "Mise à jour client réussie "
-      redirect_to @clients
+      redirect_to clients_path
     else
       flash[:error] = "Echec dans la mise à jours du client"
       render :edit    

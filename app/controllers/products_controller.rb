@@ -39,13 +39,13 @@ class ProductsController < ApplicationController
 
   def destroy
     # @product= Product.find(params[:id])
-    # if @product.destroy
-    #   flash[:success] = "Produit supprimé"
-    #   redirect_to products_path
-    # else
-    #   flash[:error] = "Echec dans la mise à jours du client"
-    #   render :edit    
-    # end
+    #   if @product.destroy
+    #    flash[:success] = "Produit supprimé"
+    #    redirect_to products_path
+    #  else
+    #    flash[:error] = "Echec dans la mise à jours du client"
+    #    render :edit    
+    #  end
   end
 
   private 

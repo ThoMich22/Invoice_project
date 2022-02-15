@@ -77,7 +77,7 @@ class InvoicesController < ApplicationController
   end
 
   def destroy
-    @invoice= Invoice.find(params[:id])
+    @invoice = Invoice.find(params[:id])
     if @invoice.destroy
       flash[:success] = "Devis supprimé"
       redirect_to invoices_path
@@ -90,7 +90,7 @@ class InvoicesController < ApplicationController
   private 
 
     def invoice_params
-      params.require(:invoice).permit(:date, :statue, :client_id, :user_id, selections_attributes: [:invoice_id, :_destroy, :id, product_attributes: [:title, :description, :price, :id]])
+      params.require(:invoice).permit(:date, :statue, :client_id, :user_id, selections_attributes: [:invoice_id, :_destroy, :id, product_attributes: [:title, :description, :price, :_destroy, :id]])
     end
 
 end
