@@ -3,7 +3,7 @@
     <div class="row pb-5">
       <div class="col-6">
         <h3 class="card-title pt-5">DEVIS</h3>
-        <p class="card-text p-option">Devis n°: <strong><%= Time.now.year %><%= params[:id] %></strong>
+        <p class="card-text p-option">Devis n°: <strong><%= Time.now.year %><%= @invoice.invoice_number %></strong>
           <br>Date : <strong><%= @invoice.date.strftime('%d/%m/%Y') %></strong>
         </p>
       </div>

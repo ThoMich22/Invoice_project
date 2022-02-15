@@ -18,8 +18,24 @@ class Invoice < ApplicationRecord
   end
 
   
+  def find_invoice_number 
 
+    @invoice = Invoice.all
+    
+    self.invoices.each do |invoice|
+      if @invoice.invoice_number == Invoice.find("#{invoice_number}")
+        @invoice.invoice_number = @invoice.invoice_number.last + 1 
+      else
+        @invoice.invoice_number
+      end
 
+    end
+
+    return @invoice.invoice_number
+
+  end
+
+  
   # before_save :find_or_create_products
 
   # def find_or_create_products

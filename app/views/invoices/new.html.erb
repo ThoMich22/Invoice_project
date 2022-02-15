@@ -17,12 +17,16 @@
     </div>
     
     <div class="col-6">
-      <div class=px-4" style="border-radius: 20px; background-color: white; padding-left: 100px; padding-right: 100px; padding-top: 50px;">    
+      <div class="" style="border-radius: 20px; background-color: white; padding-left: 100px; padding-right: 100px; padding-top: 50px;">    
         <div class="row pb-5">
           <div class="col-6">
             <h3 class="card-title pt-5">DEVIS</h3>
-            <p class="card-text p-option">Devis n° : <%= Time.now.year %><%= Invoice.count+1 %></p>
+            <p class="card-text p-option">Devis n° : <%= Time.now.year %><%= @invoice_number %> </p>
+            
+            <%= invoice_form.hidden_field :invoice_number, :as => :hidden, :input_html => { :value => @invoice.invoice_number } %>
+            
             <%= invoice_form.hidden_field :user_id, label: "Which user is creating it?",:as => :hidden, :input_html => { :value => current_user.id }  %>
+            
             <div class="justify-content-start">
               <%= invoice_form.input :date, :as => :date, label: false%>
             </div>

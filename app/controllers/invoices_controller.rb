@@ -1,14 +1,14 @@
 class InvoicesController < ApplicationController
+  
   INVOICES_PER_PAGE = 4
   
   def index
-    
-  
     
     @invoices = Invoice.where(:user_id => current_user.id).count
     
     @page = params.fetch(:page, 0).to_i
     @invoice = Invoice.where(:user_id => current_user.id).offset(@page * INVOICES_PER_PAGE).limit(INVOICES_PER_PAGE).order(id: :desc)
+    
   end
 
   def show
@@ -26,6 +26,13 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = Invoice.new
+    
+    @invoices = Invoice.where(:user_id => current_user.id)
+    if @invoices.empty? == true 
+      @invoice_number = '1'
+    else
+      @invoice_number = Invoice.where(:user_id => current_user.id).map(&:invoice_number).max + 1
+    end
     # @products = Product.all 
     # @products.each { @invoice.selections.build }
     # @invoice.selections.build.build_product
@@ -36,7 +43,14 @@ class InvoicesController < ApplicationController
     @client = Client.where(:user_id => current_user.id)
     @invoice = Invoice.create(invoice_params)
     @invoice.user_id = current_user.id
-        
+    
+    @invoices = Invoice.where(:user_id => current_user.id)
+    if @invoices.empty? == true
+      @invoice.invoice_number = '1'
+    else
+      @invoice.invoice_number = Invoice.where(:user_id => current_user.id).map(&:invoice_number).max + 1
+    end 
+
     if @invoice.save
       flash[:success] = "Création du devis réussie "
       redirect_to invoices_path
@@ -44,6 +58,7 @@ class InvoicesController < ApplicationController
       flash[:error] = "Echec dans la création du devis"
       redirect_to @invoice     
     end
+
   end
 
   def edit
@@ -53,7 +68,7 @@ class InvoicesController < ApplicationController
   def update
     @invoice = Invoice.find(params[:id])
     if @invoice.update(invoice_params)
-      flash[:success] = "Invoice modifié"
+      flash[:success] = "Devis modifié"
       redirect_to invoices_path
     else
       flash[:error] = "Echec dans la modification du devis"
@@ -64,10 +79,10 @@ class InvoicesController < ApplicationController
   def destroy
     @invoice= Invoice.find(params[:id])
     if @invoice.destroy
-      flash[:success] = "Produit supprimé"
+      flash[:success] = "Devis supprimé"
       redirect_to invoices_path
     else
-      flash[:error] = "Echec dans la mise à jours du client"
+      flash[:error] = "Echec dans la supression du devis"
       render :edit    
     end
   end

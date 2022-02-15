@@ -6,7 +6,7 @@
           <div class="row justify-content-between align-items-end">
             <div class="col-lg-6 col-sm-2 w-auto">
               <h1 class="display-2 fw-bold">Devis</h1>
-              <p class="fs-5">Bienvenue, vous avez <%= @invoices %> devis en cours</p>
+              <p class="fs-5">Bienvenue, vous avez <%= @invoices %> devis.</p>
             </div>
             <div class="col-lg-auto col-sm-1 w-auto">
               <div class="navbar">
@@ -45,11 +45,11 @@
             <div class="d-flex justify-content-center">
               <div class="table-responsive w-100" >
                 <table class="table table-hover" > 
-                  <% @invoice.each_with_index do |invoice, index| %>
+                  <% @invoice.each do |invoice| %>
                   <tbody>
                     <tr>
-                        <td><%= Time.now.year %><%= index  + 1 %></td>
-                        <td><%= invoice.date.strftime("%m/%d/%Y") %></td>
+                        <td><%= Time.now.year %><%= invoice.invoice_number %></td>
+                        <td><%= invoice.date.strftime("%d/%m/%Y") %></td>
                         <%# <td><%= invoice.date.strftime('%d/%m/%Y') %></td> %>
                         <td><%= invoice.client.company_name %></td>
                         <td><%= invoice.total_invoice %> € </td>
