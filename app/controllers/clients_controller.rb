@@ -1,11 +1,17 @@
 class ClientsController < ApplicationController
-
+  
+  
   def index
     @clients = Client.where(:user_id => current_user.id)
   end
 
   def show
     @clients = Client.find(params[:id])
+
+    respond_to do |format|
+      format.html { redirect_to clients_path }
+      format.js { }
+    end
   end
 
   def new
@@ -25,6 +31,7 @@ class ClientsController < ApplicationController
   end
 
   def edit
+  
     @clients = Client.find(params[:id])
   end
 

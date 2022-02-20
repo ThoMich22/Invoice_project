@@ -25,7 +25,10 @@ class InvoicesController < ApplicationController
   end
 
   def new
+    @statut = ['brouillon', 'en cours', 'payée']
+
     @invoice = Invoice.new
+
     
     @invoices = Invoice.where(:user_id => current_user.id)
     if @invoices.empty? == true 

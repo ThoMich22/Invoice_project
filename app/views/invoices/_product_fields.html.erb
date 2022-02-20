@@ -4,15 +4,16 @@
     <%= f.input :description, class:"form-control", placeholder:'Ajouter une diesciption', label: false  %>
     
   </div>
-  <div class="col ">
-    <div class="input-group input-group-sm justify-content-end">
-      <%= f.input :price, :placeholder => 'Ajouter un prix', required: true, label: false, class:"form-control"%>
+  <div class="col text-end">
+    <div class="input-group input-group-sm justify-content-end text-end">
+      <%= f.input :price, :placeholder => 'Ajouter un prix', required: true, label: false, class:"form-control text-end"%>
       <span class="input-group-text">.00</span>
       <span class="input-group-text">€</span>
     </div>
   </div>
 </div>
-<hr style="color: #b6b6b6;">
+
+
 
 <script>
 $('.form-control.numeric').keyup(function() {

@@ -1,74 +1,139 @@
-<body class="">
-  <div class="container" style="padding-top: 100px;">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-12">
-        <div class="container-fluid">
-          <div class="row justify-content-between align-items-end">
-            <div class="col-lg-6 col-sm-2 w-auto">
-              <h1 class="display-2 fw-bold">Devis</h1>
-              <p class="fs-5">Bienvenue, vous avez <%= @invoices %> devis.</p>
+
+
+<body class="row">
+ 
+    <div class="d-flex flex-column align-items-center flex-shrink-0 text-white col-2 min-vh-100" style=" background-color: #E9EAEE;" >
+      <div style="padding-top: 20%;">
+        <%= link_to edit_user_registration_path(@current_user), method: "get", class:'d-flex align-items-center text-decoration-none', style:'color: #202731;' do %>
+            <div class="avatar avatar-md avatar-indicators avatar-online">
+              <img alt="avatar" src="https://github.com/mdo.png" alt="" width="48" height="48" class="rounded-circle me-3">
+          </div>
+          <p class="ps-3">Thomas <br>
+            Michonneau</p>
+        <% end %>
+      </div>
+      <div class="pt-5">
+        <%= link_to new_invoice_path do %>
+          <button type="button" class="btn btn-primary mb-5" style="padding: 2px 20px 2px 20px;">
+            <div class="d-flex align-items-center text-center fw-bold">
+              Créer un devis <span class="badge badge-light pt-2" style="padding-right: 0px;"><div class="div-badge"><i class="fi fi-rr-plus"></i></div></span>
             </div>
-            <div class="col-lg-auto col-sm-1 w-auto">
-              <div class="navbar">
-                <ul style="padding-left: 0;">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none; color: #c8caec;">
-                      Menu
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #292C6D;">
-                      <% if user_signed_in? %>
-                        <li><%= link_to "Clients", clients_path, style:"color: #c8caec;", class:"dropdown-item"%></li>
-                        <li><%= link_to "Accéder au profil", edit_user_registration_path(@current_user), style:"color: #c8caec;", class:"dropdown-item"%></li>
-                        <div class="dropdown-divider"></div>
-                        <li> <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class:"dropdown-item" %></li>
-                      <% else %>
-                        <li><%= link_to "Se connecter", new_user_session_path, style:"color: #c8caec;", class:"dropdown-item"%></li>
-                        <li><%= link_to "Créer un compte", new_user_registration_path, style:"color: #c8caec;", class:"dropdown-item"%></li>
-                      <% end %>
-                    </ul>
-                  </li>
-                </ul>
+          </button>
+        <% end %>
+        
+      </div>
+      <ul class="navbar-nav nav-sm flex-column w-100">
+        <li class="nav-item active py-3">
+          <%= link_to invoices_path, method: "get", class:'nav-link' do %>
+            <span class="pe-3" style="color: #045EFC;"><i class="fi fi-rr-file"></i></span> Devis
+          <% end %>
+        </li>
+        <li class="nav-item  py-3">
+          <%= link_to clients_path, method: "get", class:'nav-link' do %>
+            <span class="pe-3" style="color: #045EFC;"><i class="fi fi-rr-user"></i></span> Clients
+          <% end %>
+        </li>
+        <li class="nav-item  py-3">
+          <%= link_to invoices_path, method: "get", class:'nav-link' do %>
+            <span class="pe-3" style="color: #045EFC;"><i class="fi fi-rr-layers"></i></span>Missions
+          <% end %>
+        </li>
+      </ul>
+      <div class="mt-auto"></div>
+      <div class="pb-5">
+        <%= link_to "Déconnexion", destroy_user_session_path, method: :delete, class:"btn btn-outline-dark" %>
+      </div>
+    </div>
+    <div class="col-7 min-vh-100 d-flex align-items-center flex-column px-5" style="background-color: #F7F7F7;">
+      <div class="col-11" style="margin-top: 11%; margin-bottom: 5%;">
+        <h2 class="fw-bold fs-1">Bienvenue, <span class="fw-light">vous avez <%= @invoices %> devis</span></h2>
+      </div>
+      <div class="col-11 list-group list-group-checkable " >
+        <div class="d-flex px-4 pb-1 text-special list-titre">
+          <div class="col-2 ps-3">N° de devis</div>
+          <div class="col-2 ">Date</div>
+          <div class="col-4">Nom de l'entreprise</div>
+          <div class="col-2">Montant</div>
+          <div class="col-2 text-center">Statut</div>
+        </div>
+      <% @invoice.each do |invoice| %>
+        <%= link_to invoice_path(invoice.id), method: "get", style:'text-decoration: none;' do %>
+        <div class="list-group-item d-flex p-4" style="border-radius: 1.8rem;">
+          <div class="col-2 ps-3">#<%= Time.now.year %><%= invoice.invoice_number %></div>
+          <div class="col-2 "><%= invoice.date.strftime("%d/%m/%Y") %></div>
+          <div class="col-4 fw-bold"><%= invoice.client.company_name %></div>
+          <div class="col-2"><%= invoice.total_invoice %>0 € </div>
+          <% if invoice.statue == "en cours" %>
+          <div class="col-2 text-center"><span class="badge rounded-pill bg-primary"><%= invoice.statue %></span></div>
+          <% elsif invoice.statue == "completed" %>
+          <div class="col-2 text-center"><span class="badge rounded-pill bg-primary"><%= invoice.statue %></span></div>
+          <% else %>
+          <div class="col-2 text-center"><span class="badge rounded-pill bg-primary"><%= invoice.statue %></span></div>
+          <% end %>
+        </div>
+       <% end %>
+      <% end %>
+      </div>
+    </div>
+    <div class="col-3 min-vh-100 d-flex justify-content-start flex-column" style="background-color: #F7F7F7;">
+      <div class="col-10" style="margin-top: 27%; margin-bottom: 5%;">
+        <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
+          <h4 class="fw-bold pe-5 underligned active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Résumé</h2>
+          <h4 class="fw-bold" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile">Calendrier</h2>
+        </div>
+      </div>
+      <div class="card col-10" style="height: 650px;">
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+            <div class="d-flex flex-column align-items-center">
+              <div class="mb-3 mt-5">
+                <select class="form-select form-select-sm text-center" aria-label=".form-select-sm example">
+                  <option selected>ce mois-ci</option>
+                  <option value="1">ce mois-ci</option>
+                  <option value="2">année</option>
+                </select>
+              </div>
+              <div class="position-relative">
+                <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+                  <g id="Ellipse_2" data-name="Ellipse 2" fill="none" stroke="#045efc" stroke-width="16">
+                    <circle cx="100" cy="100" r="100" stroke="none"/>
+                    <circle cx="100" cy="100" r="92" fill="none"/>
+                  </g>
+                </svg>
+                <h6 class="fw-bold fs-4 w-100 text-center position-absolute top-50 start-50 translate-middle">3000.00 $</h6>
+              </div>
+              <div class="my-4">
+                <hr style="width: 300px;">
+              </div>
+              <div class="mb-5 ">
+                <div id="columnchart_material" style="width: 300px; height: auto;"></div>
+              </div>
+            </div> 
+          </div>
+          <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+            <div class="d-flex flex-column align-items-center ">
+              <div class="bg-dark mt-5 d-flex align-items-center justify-content-center" style="width: 300px; height: 250px;">
+                <p class="text-white p-3">Features in progress</p>
+              </div>
+              <div class="my-3">
+                <hr style="width: 300px;">
+              </div>
+              <div class="d-flex align-items-center justify-content-center div-image mb-5">
+                
               </div>
             </div>
-            <div class="col-lg-auto col-sm-1 mb-4 w-auto">
-              <%= link_to new_invoice_path do %>
-              <div class="inline-item align-items-center" id="hover-button">
-                <button type="button" class="btn-icon btn text-white">
-                  <span class=""><i class="fas fa-plus-circle" style="color: white;"></i></span>
-                  <span class="px-2 mb-4">Nouveau devis</span>
-                </button>
-              </div> 
-              <% end %>
-            </div>
           </div>
-          <div class="row" style="height= 800px;">
-            <div class="d-flex justify-content-center">
-              <div class="table-responsive w-100" >
-                <table class="table table-hover" > 
-                  <% @invoice.each do |invoice| %>
-                  <tbody>
-                    <tr>
-                        <td><%= Time.now.year %><%= invoice.invoice_number %></td>
-                        <td><%= invoice.date.strftime("%d/%m/%Y") %></td>
-                        <td><%= invoice.client.company_name %></td>
-                        <td><%= invoice.total_invoice %>0 € </td>
-                        <% if invoice.statue == "en cours" %>
-                        <td><span class="badge1"><%= invoice.statue %></span></td>
-                        <% elsif invoice.statue == "completed" %>
-                        <td><span class="badge2"><%= invoice.statue %></span></td>
-                        <% else %>
-                        <td><span class="badge3"><%= invoice.statue %></span></td>
-                        <% end %>
-                        <td>
-                          <%= link_to invoice_path(invoice.id), method: "get" do %>
-                              <i class="fas fa-arrow-circle-right"></i>
-                          <% end %>
-                        </td>
-                    </tr>
-                  </tbody>
-                  <% end %>
-                </table>
-                <nav aria-label="Page navigation example">
+        </div>
+      </div>
+    </div>
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  
+</body>
+
+<!-- <nav aria-label="Page navigation example">
                   <% if @page == 0 %>
                   <ul class="pagination justify-content-start">
                     <li class="page-item"><%= link_to "Page suivante", invoices_path(page: @page + 1), class:"page-link" %></li>  
@@ -79,16 +144,4 @@
                     <li class="page-item"><%= link_to "Page suivante", invoices_path(page: @page + 1), class:"page-link" %></li>  
                   </ul>
                   <% end %>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>  
-    </div>
-  </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-</body>
+                </nav> -->

@@ -12,10 +12,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet"> 
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     
 
   </head>
@@ -50,8 +51,13 @@
   </header> -->
 
   <body>
-    <p class="notice px-3"><%= notice %></p>
-    <p class="notice px-3"><%= alert %></p>
+  
+    
+      <p class="alert px-3 position-absolute"><%= notice %></p>
+      <p class="alert px-3 position-absolute"><%= alert %></p>
+    
+
+    
     <%= yield %>
   
 

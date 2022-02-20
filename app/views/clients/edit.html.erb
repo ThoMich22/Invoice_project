@@ -1,40 +1,147 @@
-<div class="container">
-  <div class="row justify-content-center p-5">
-    <div class="card col-6">
-      <div class="card-header">
-        <h5>Modifier Client</h5>
-      </div>
-      <div class="card-body">
-      <%= simple_form_for(@clients) do |f| %>
-        <form>
-          
-          <div class="form-group row">
-            <%= f.input :company_name, label: 'Nom de la société', class:"form-control" %>
-          </div>
-          <div class="form-group row">
-            <%= f.input :first_name, class:"form-control" %>
-          </div>
-          <div class="form-group row">
-            <%= f.input :last_name, class:"form-control" %>
-          </div>
-          <div class="form-group row">
-            <%= f.input :adress, class:"form-control" %>
-          </div>
-          <div class="form-group row">
-            <%= f.input :phone_number, as: :string, type: "phone", class:"form-control" %>
-          </div>
-          <div class="form-group row">
-            <%= f.input :mail, class:"form-control" %>
-          </div>
-          <div class="form-group text-center my-3">
-            <%= f.button :submit, class:"btn btn-success" %>
-          </div>
-        </form>
+<body class="row">
+  
+  <% if @clients.errors.any? %>
+    <div class="alert alert-danger position-absolute w-100" role="alert">
+      <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+      <ul>
+        <% @clients.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>  
+  <% end %>
+  
+  <div class="d-flex flex-column align-items-center flex-shrink-0 text-white col-2 min-vh-100" style=" background-color: #E9EAEE;" >
+    <div style="padding-top: 20%;">
+      <%= link_to edit_user_registration_path(@current_user), method: "get", class:'d-flex align-items-center text-decoration-none', style:'color: #202731;' do %>
+          <div class="avatar avatar-md avatar-indicators avatar-online">
+            <img alt="avatar" src="https://github.com/mdo.png" alt="" width="48" height="48" class="rounded-circle me-3">
+        </div>
+        <p class="ps-3">Thomas <br>
+          Michonneau</p>
       <% end %>
-      </div>
-      <div class="card-footer">
-        back
-      </div>
+    </div>
+    <div class="pt-5">
+      <%= link_to new_client_path(@clients) do %>
+        <button type="button" class="btn btn-primary mb-5" style="padding: 2px 20px 2px 20px;">
+          <div class="d-flex align-items-center text-center fw-bold">
+            Ajouter un client <span class="badge badge-light pt-2" style="padding-right: 0px;"><div class="div-badge"><i class="fi fi-rr-plus"></i></div></span>
+          </div>
+        </button>
+      <% end %>
+    </div>
+    <ul class="navbar-nav nav-sm flex-column w-100">
+      <li class="nav-item py-3">
+        <%= link_to invoices_path, method: "get", class:'nav-link' do %>
+          <span class="pe-3" style="color: #045EFC;"><i class="fi fi-rr-file"></i></span> Devis
+        <% end %>
+      </li>
+      <li class="nav-item active py-3">
+        <%= link_to clients_path, method: "get", class:'nav-link' do %>
+          <span class="pe-3" style="color: #045EFC;"><i class="fi fi-rr-user"></i></span> Clients
+        <% end %>
+      </li>
+      <li class="nav-item  py-3">
+        <%= link_to invoices_path, method: "get", class:'nav-link' do %>
+          <span class="pe-3" style="color: #045EFC;"><i class="fi fi-rr-layers"></i></span>Missions
+        <% end %>
+      </li>
+    </ul>
+    <div class="mt-auto"></div>
+    <div class="pb-5">
+      <button class="btn btn-outline-dark">
+        Déconnexion
+      </button>
     </div>
   </div>
-</div>
+    
+  <%= simple_form_for @clients, :html=> { class: 'col-10 min-vh-100 d-flex align-items-center justify-content-start px-5', style:"background-color: #F7F7F7; padding-top: 5%; padding-bottom: 5%;" } do |f| %>
+    
+    <div class="col-9 card justify-content-center align-self-start" style="height: auto; padding-top: 120px; padding-bottom: 120px;">
+      <div class="col-10 ps-5">
+        <h2 class="fw-bold fs-1 ps-5 pb-5">Modifier client</h2>
+      </div>
+      <div class="row col-10 justify-content-center">
+        <div class="col-6 pe-3 d-flex flex-column align-items-center justify-content-center">
+          <div class="mb-3 mt-5 d-flex flex-column align-items-center">
+            <div class="avatar avatar-xl d-flex align-items-center" >
+              <img alt="no-image" src="" alt="image avatar" width="120" height="120" class="rounded-circle me-3" style="background-color: #E9EAEE;">
+            </div>
+            <p class="p-option">Ajouter une image de profil</p>
+          </div>
+          <div class="mt-2" style="width: 200px;">
+            <button class="w-100 btn btn-outline-primary mt-3" type="submit">télécharher une image..</button>
+          </div>
+          <div class="" style="width: 200px;">
+            <button class="w-100 btn btn-primary mt-3" type="submit">Valider</button>
+          </div>
+        </div>
+        <div class="col-6 ps-3">
+        
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="address" class="form-label">Nom de l'enreprise</label>
+                <%= f.input :company_name, class:"form-control", label: false, placeholder:'La super company' %>
+                <%= f.hidden_field :user_id, label: "Which user is creating it?",:as => :hidden, :input_html => { :value => current_user.id }  %>
+              </div>
+              <div class="col-12">
+                <label for="address" class="form-label">Numéro de SIRET/SIREN <span class="text-muted fw-light" style="font-size: 0.7rem;">(Optionel)</span></label>
+                <input type="text" class="form-control" >
+              </div>
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">Prénom</label>
+                <%= f.input :first_name, class:"form-control", label: false,  placeholder:'Marie' %>
+              </div>
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Nom</label>
+                <%= f.input :last_name, class:"form-control", label: false, placeholder:'Durand' %>
+              </div>
+              <div class="col-12">
+                <label for="email" class="form-label">Email </label>
+                <%= f.input :mail, class:"form-control", label: false, placeholder:'you@example.com' %> 
+              </div>
+              <div class="col-12">
+                <label for="email" class="form-label">Téléphone </label>
+                <%= f.input :mail, class:"form-control", label: false, placeholder:'0604589503' %> 
+              </div>
+              <div class="col-12">
+                <label for="address" class="form-label">Addresse complète</label>
+                <%= f.input :adress, class:"form-control", label: false, placeholder:'23 rue du Paradis, 75010 PARIS' %> 
+              </div>
+              <div class="col-12 mb-3">
+                <label for="address" class="form-label">Site internet <span class="text-muted fw-light" style="font-size: 0.7rem;">(Optionel)</span></label>
+                <input type="text" class="form-control", placeholder='lasupercompany.com' >
+              </div>
+              <div class="col-12">
+                <%= f.button :submit, class:"btn btn-primary w-100" %>
+              </div>
+            </div>
+          
+        
+        </div>
+      </div>
+      
+    </div>
+  
+    <div class="col-3 min-vh-100 d-flex justify-content-start align-items-center flex-column" style="background-color: #F7F7F7;">
+      <div class="w-75 mb-5">
+          <h4 class="fw-bold pe-5 underligned active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Options</h2>
+      </div>
+      <div class="card col-10" style="height: auto;">
+        <div class="d-flex flex-column align-items-center pt-5">
+          <div class="col-8 mb-3">
+          
+            <%= f.button :submit, class:"btn btn-primary w-100" %>
+          </div>
+          <div class="col-8 mb-5">
+            <%= link_to "Annuler", clients_path, class:'btn btn-dark w-100 py-2' %>
+            
+          </div>
+        </div> 
+      </div>
+    </div>
+ <% end %> 
+
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>

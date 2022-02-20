@@ -1,0 +1,37 @@
+
+
+<div class="d-flex flex-column align-items-center py-5" id="card-client">
+  <div class="col-8 mb-3 d-flex justify-content-center mt-5">
+    <div class="avatar avatar-xl d-flex align-items-center  ">
+      <img alt="avatar" src="https://github.com/mdo.png" alt="" width="120" height="120" class="rounded-circle me-3">
+    </div>
+  </div>
+  <div class="col-8 my-2">
+    <h6 class="fw-bold fs-4 text-center"><%= client.company_name %></h6>
+    <p class="text-center  fw-light"><%= client.first_name %> <%= client.last_name %></p>
+  </div>
+  <div class="col-8 my-3 d-flex flex-column justify-content-around" style="height: 200px;">
+    <div class="d-flex">
+      <div class="text-encart"><i class="fi fi-rr-at pe-3"></i></div>
+      <div class="text-encart"><%= client.mail %></div>
+    </div>
+    <div class="d-flex">
+      <div class="text-encart"><i class="fi fi-rr-call-outgoing pe-3"></i></div>
+      <div class="text-encart"><%= client.phone_number %></div>
+    </div>
+    <div class="d-flex">
+      <div class="text-encart"><i class="fi fi-rr-marker pe-3"></i></div>
+      <div class="text-encart"><%= client.adress %></div>
+    </div>
+  </div>
+  <div class="col-8 mb-3 mt-3 d-flex justify-content-center">
+  <%= link_to "Modifier", edit_client_path(client.id), class:'btn btn-primary', style:'width: 250px;' %>
+  </div>
+  <div class="col-8 mb-5 d-flex justify-content-center text-center">
+    <%= link_to "Supprimer", client_path(client.id), data: {confirm: "Êtes-vous sûr de vouloir supprimer ce client ?"}, method: "delete", style:'width: 250px; color: red;' %>
+  </div>
+
+
+
+ 
+</div> 

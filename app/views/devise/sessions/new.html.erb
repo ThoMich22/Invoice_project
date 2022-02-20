@@ -1,25 +1,36 @@
-<div class="container">
-  <div class="row vh-100 align-items-center justify-content-center">
-    <div class="col-8">
-      <h1>Log in</h1>
-        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="form-group text-white">
-            <%= f.input :email,
+<main class="row">
+  <div class="col-6 h-100 d-flex flex-column justify-content-center align-items-center " style="background-color: #F7F7F7;">
+    <div class="text-start" style="max-width: 560px;">
+        <h1 class="fw-bold" style="font-size: 67px;" >Bienvenue sur Devisio.</h1>
+        <h3 class="fw-light">Pour faire des devis et des factures sans perdre de temps.</h4>
+    </div>
+  </div>
+  <div class="col-6 h-100 d-flex flex-column justify-content-center align-items-center " style="background-color: #FEFEFE;">
+    <div class="text-start" style="min-width: 400px;">
+      <h2 class="fw-bold mb-3">Se connecter</h1>
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+        <div class="mb-3">
+          <%= f.input :email,
                         required: false,
                         autofocus: true,
                         input_html: { autocomplete: "email" }, class:"form-control" %>
-            <%= f.input :password,
+          <div id="emailHelp" class="form-text">Nous ne partegerons avec personne ce mail.</div>
+        </div>
+        <div class="mb-3">
+          <%= f.input :password,
                         required: false,
                         input_html: { autocomplete: "current-password" }, class:"form-control" %>
+        </div>
+        <div class="mb-3 form-check d-flex flex-row justify-content-between" style="padding-left: 0px; font-size: 0.9rem;">
             <%= f.input :remember_me, class:'form-check-input', as: :boolean if devise_mapping.rememberable?  %>
+            <%= link_to "Mot de passe oublié ?", new_user_password_path, class:'text-end' %>
           </div>
-
-          <div class="form-actions">
-            <%= f.button :submit, "Log in", class:'btn btn-primary' %>
-          </div>
+        <div class="form-actions mb-3" >
+          <%= f.button :submit, "Continuer", class:'btn btn-primary w-100' %>
+        </div>
         <% end %>
-
-        <%= render "devise/shared/links" %>
-      </div>
+        <p class="text-center" style="font-size: 0.9rem;"><%= link_to "Vous n'avez pas de compte ? Créez-en un", new_user_registration_path %></p>
+    </div>
   </div>
-</div>
+</main>

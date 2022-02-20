@@ -1,27 +1,44 @@
-<div class="container">
-  <div class="row vh-100 align-items-center justify-content-center">
-    <div class="col-8">
-      <h1>Sign up</h1>
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= f.error_notification %>
-          <div class="form-group text-white">
-            <%= f.input :email,
+<main class="row">
+  <div class="col-6 h-100 d-flex flex-column justify-content-center align-items-center " style="background-color: #F7F7F7;">
+    <div class="text-start" style="max-width: 560px;">
+        <h1 class="fw-bold" style="font-size: 67px;" >Bienvenue sur Devisio.</h1>
+        <h3 class="fw-light">Pour faire des devis et des factures sans perdre de temps.</h4>
+    </div>
+  </div>
+  <div class="col-6 h-100 d-flex flex-column justify-content-center align-items-center " style="background-color: #FEFEFE;">
+    <div class="text-start" style="min-width: 400px;">
+      <h2 class="fw-bold mb-3">Se connecter</h1>
+      
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+        <div class="mb-3">
+         
+          <%= f.input :email,
                         required: true,
                         autofocus: true,
                         input_html: { autocomplete: "email" }, class:"form-control"%>
-            <%= f.input :password,
+          <div id="emailHelp" class="form-text">Nous ne partegerons avec personne ce mail.</div>
+        </div>
+        <div class="mb-3">
+          
+          <%= f.input :password,
                         required: true,
                         hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                         input_html: { autocomplete: "new-password" }, class:"form-control" %>
-            <%= f.input :password_confirmation,
+        </div>
+        <div class="mb-3">
+          
+          <%= f.input :password_confirmation,
                         required: true,
                         input_html: { autocomplete: "new-password" }, class:"form-control" %>
-          </div>
-          <div class="form-actions">
-            <%= f.button :submit, "Sign up", class:'btn btn-primary' %>
-          </div>
+        </div>
+        <div class="form-actions mb-3">
+          <%= f.button :submit, "Créez votre comptre", class:'btn btn-primary w-100' %>
+        </div>
         <% end %>
-        <%= render "devise/shared/links" %>
-      </div>
+        
+      
+      <small><p class="text-center"><%= link_to "Vous avez déjà un compte ? Connectez-vous", new_user_session_path %></p></small>
+    </div>
   </div>
-</div>
+</main>
